@@ -13,19 +13,28 @@
 
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('clients.registrarCliente') }}">Registrar cliente</a>
+                    <!--CLIENTES-->
+                    <li class="nav-item nav-underline">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#clientsMenu" aria-expanded="false">Clientes</a>
+                        <div class="collapse" id="clientsMenu">
+                        <!--Submenu de Clientes-->
+                            <ul class="dropdown-menu" id="clientsMenu">
+                                <li><a class="dropdown-item" href="{{route('clients.index')}}">Consulta Clientes</a></li>
+                                <li><a class="dropdown-item" href="{{ route('clients.registrarCliente') }}">Registrar Cliente</a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Cotizar</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Agenda</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Depositos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Proximos eventos</a>
                     </li>
                 </ul>
