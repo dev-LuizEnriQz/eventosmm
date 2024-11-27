@@ -23,6 +23,12 @@ class User extends Authenticatable
         'password',
     ];
 
+    //Relacion con la Tabla Clientes
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
