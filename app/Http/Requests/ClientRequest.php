@@ -11,7 +11,7 @@ class ClientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;//Permite que la solicitud sea procesada
     }
 
     /**
@@ -26,7 +26,7 @@ class ClientRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:25'],
             'last_name' => ['required', 'string', 'max:25'],
             'second_surname' => ['required', 'string', 'max:25'],
-            'phone' => ['required', 'string', 'regex:/^\d{2}-\d{4}-\d{4}$/'],
+            'phone' => ['required', 'string', 'digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients,email,'.$clientId],
             'invalidCheck' => 'accepted',//Valida que se acepte lo que se envia del formulario
         ];

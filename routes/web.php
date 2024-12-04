@@ -26,12 +26,15 @@ Route::middleware('auth')->group(function () {
 //Pagina de Registrar clientes
 
 Route::middleware(['auth','verified'])->prefix('clients')->name('clients.')->group(function () {
-    Route::get('/', [ClientController::class, 'index'])->name('index'); // Listar clientes
+    Route::get('/', [ClientController::class, 'index'])->name('index'); // Lista de clientes
     Route::get('registrarCliente', [ClientController::class, 'create'])->name('registrarCliente'); // Formulario para crear cliente
     Route::post('/', [ClientController::class, 'store'])->name('store'); // Guardar cliente
     Route::get('{id}/edit', [ClientController::class, 'edit'])->name('edit'); // Formulario para editar cliente
     Route::put('{id}', [ClientController::class, 'update'])->name('update'); // Actualizar cliente
     Route::patch('{id}/deactivate', [ClientController::class, 'deactivate'])->name('deactivate'); // Desactivar cliente
+
+    //Ruta de DATA TABLE
+    Route::get('/api/clients', [ClientController::class, 'getClientsData'])->name('clients.api');
 });
 
 require __DIR__.'/auth.php';

@@ -23,15 +23,14 @@ class Client extends Model
         'created_by'
     ];
 
+    //Metodo para filtrar clientes activos
+    public function scopeActivos($query)
+    {
+        return $query->where('activo', 1);
+    }
     //Relación con la tabla User
     public function user()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
-    }
-
-    //Acceso para el nombre completo
-    public function getFullNameAttribute()
-    {
-        return "{$this->first_name} {$this->last_name} {$this->second_surname}";
+        return $this->belongsTo(User::class, 'created_by');
     }
 }
