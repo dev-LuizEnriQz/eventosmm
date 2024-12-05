@@ -26,7 +26,14 @@
                     </li>
 
                     <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#">Cotizar</a>
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#quoteMenu" aria-expanded="false">Cotizaciones</a>
+                        <div class="collapse" id="quoteMenu">
+                            <!--Submenu de Clientes-->
+                            <ul class="dropdown-menu" id="quoteMenu">
+                                <li><a class="dropdown-item" href="#">Consultar Cotización</a></li>
+                                <li><a class="dropdown-item" href="#">Registrar Cotización</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Agenda</a>

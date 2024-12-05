@@ -6,13 +6,13 @@
             <!--Encabezado de la Data Table -->
             <thead>
                 <tr>
-                    <th>Id de Cliente</th>
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
                     <th>Teléfono</th>
                     <th>Correo Electrónico</th>
-                    <th>Registrado por</th>
+                    <th>Asesor</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

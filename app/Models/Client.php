@@ -33,4 +33,10 @@ class Client extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    // Accessor para el nombre completo
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name} {$this->second_surname}";
+    }
 }

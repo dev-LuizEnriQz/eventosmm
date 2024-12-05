@@ -26,9 +26,13 @@ class ClientController extends Controller
         if ($request->ajax()) {
             $data = Client::where('activo',1)->get();
             return DataTables::of($data)
+                ->addColumn('created_by', function ($row) {
+                    return $row->user ? $row->user->name : 'N/A';
+                })
                 ->addColumn('actions', function ($row) {
-                    return '<a href="/clients/' . $row->id . '/edit" class="btn btn-sm btn-primary">Editar</a>
-                            <a href="/clients/' . $row->id . '/desactivate" class="btn btn-sm btn-danger">Desactivar</a>';
+                    return '<a href="/clients/' . $row->id . '/edit" class="btn btn-sm btn-primary">Editar</a>';
+                    //Boton de desactivar a cliente pendiente si se llega utlizar
+                    /**<a href="/clients/' . $row->id . '/deactivate" class="btn btn-sm btn-danger">Desactivar</a>*/
                 })
                 ->rawColumns(['actions'])
                 ->make(true);
@@ -70,24 +74,30 @@ class ClientController extends Controller
     public function edit(string $id)
     {
         $client = Client::findOrFail($id);
-        return view('clients.edit', compact('client'));
+        return view('clients.edit')->with('client', $client);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClientRequest $request, string $id)
+    public function update(Request $request, $id)
     {
         $client = Client::findOrFail($id);
-        $client->update($request->validated());
+        $client->first_name = $request->first_name;
+        $client->last_name = $request->last_name;
+        $client->second_surname = $request->second_surname;
+        $client->phone = $request->phone;
+        $client->email = $request->email;
+
+        $client->update();
 
         return redirect()->route('clients.index')->with('success', 'Cliente actualizado satisfactoriamente');
     }
 
-    public function desactivate($id) //Desactivar un cliente, para que no lo muestre en los resultados de busqueda
+    public function deactivate($id) //Desactivar un cliente, para que no lo muestre en los resultados de busqueda
     {
         $client = Client::findOrFail($id);
-        $client->update(['activo' => 0]);
+        $client->update(['activo'=>0]);
 
         return redirect()->route('clients.index')->with('success', 'Cliente desactivado satisfactoriamente');
     }
