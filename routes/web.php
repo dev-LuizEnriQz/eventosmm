@@ -36,6 +36,8 @@ Route::middleware(['auth','verified'])->prefix('clients')->name('clients.')->gro
 
     //Ruta de DATA TABLE
     Route::get('/api/clients', [ClientController::class, 'getClientsData'])->name('clients.api');
+    //Ruta de BUSQUEDA EN VIVO CLIENTES
+    Route::get('/search', [ClientController::class, 'search'])->name('clients.search');
 });
 
 //Rutas relacionadas con el Modelo Quote (Cotizaciones)

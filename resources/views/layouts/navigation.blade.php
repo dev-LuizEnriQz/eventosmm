@@ -30,8 +30,8 @@
                         <div class="collapse" id="quoteMenu">
                             <!--Submenu de Clientes-->
                             <ul class="dropdown-menu" id="quoteMenu">
-                                <li><a class="dropdown-item" href="#">Consultar Cotización</a></li>
-                                <li><a class="dropdown-item" href="#">Registrar Cotización</a></li>
+                                <li><a class="dropdown-item" href="{{route('quotes.index')}}">Consultar Cotización</a></li>
+                                <li><a class="dropdown-item" href="{{route('quotes.registrarCotizacion')}}">Registrar Cotización</a></li>
                             </ul>
                         </div>
                     </li>

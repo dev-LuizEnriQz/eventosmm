@@ -16,6 +16,7 @@ $(document).ready(function () {
             {data: 'second_surname', name: 'second_surname'},
             {data: 'phone', name: 'phone'},
             {data: 'email', name: 'email'},
+            {data: 'company', name: 'company'},
             {data: 'created_by', name: 'created_by'},
             {
                 data: 'actions', name: 'actions',

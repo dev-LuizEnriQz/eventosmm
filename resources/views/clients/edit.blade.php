@@ -38,6 +38,12 @@
                         <input type="email" class="form-control" id="email" name="email"
                         value="{{$client->email}}">
                     </div>
+                    <!--Campo para empresa-->
+                    <div class="col-md-4">
+                        <label for="company" class="form-label">Compañia</label>
+                        <input type="text" class="form-control" id="company" name="company"
+                        value="{{$client->company}}">
+                    </div>
 
                     <div class="col-11">
                         <button type="submit" class="btn btn-primary">Actualizar Cliente</button>

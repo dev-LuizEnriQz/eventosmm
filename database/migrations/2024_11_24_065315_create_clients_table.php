@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('second_surname')->nullable();
             $table->string('phone');
             $table->string('email')->unique();
+            $table->string('company')->nullable();
             $table->integer('activo')->default(1);
             $table->unsignedBigInteger('created_by');//Clave foránea de la Tabla Users
             $table->timestamps();

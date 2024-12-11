@@ -57,6 +57,7 @@ class ClientController extends Controller
         $clientData['created_by'] = Auth::id(); //Asigna el Id del usuario autentificado que registro al Cliente
 
         Client::create($clientData);
+
         return redirect()->route('clients.index')->with('success', 'Cliente creado satisfactoriamente');
     }
 
@@ -88,6 +89,7 @@ class ClientController extends Controller
         $client->second_surname = $request->second_surname;
         $client->phone = $request->phone;
         $client->email = $request->email;
+        $client->company = $request->company;
 
         $client->update();
 
@@ -100,5 +102,17 @@ class ClientController extends Controller
         $client->update(['activo'=>0]);
 
         return redirect()->route('clients.index')->with('success', 'Cliente desactivado satisfactoriamente');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        //Busqueda de clientes por nombre o por empresa
+        $clients = Client::where('first_name', 'LIKE', "%$query%")
+            ->orWhere('last_name', 'LIKE', "%$query%")
+            ->orWhere('company', 'LIKE', "%$query%")
+            ->get(['id', 'first_name', 'last_name', 'company']);//Solo seleccionamos los campos necesarios
+
+        return response()->json($clients);
     }
 }

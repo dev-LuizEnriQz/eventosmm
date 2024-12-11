@@ -12,6 +12,7 @@
                     <th>Apellido Materno</th>
                     <th>Teléfono</th>
                     <th>Correo Electrónico</th>
+                    <th>Empresa</th>
                     <th>Asesor</th>
                     <th>Acciones</th>
                 </tr>

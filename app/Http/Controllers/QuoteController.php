@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
@@ -35,7 +36,14 @@ class QuoteController extends Controller
            'description' => 'nullable|string',
         ]);
 
-        Quote::create($validated);
+        $client = Client::findOrFail($validated['client_id']);
+
+        Quote::create([
+            'client_id' => $client->id,
+            'client_name' => $client->full_name,
+            'event_date' => $validated['event_date'],
+            'description' => $validated['description'],
+        ]);
 
         return redirect()->back()->with('success','Cotización registrada');
     }

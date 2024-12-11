@@ -19,6 +19,8 @@ class Client extends Model
         'second_surname',
         'phone',
         'email',
+        'company',
+
         'activo',
         'created_by'
     ];

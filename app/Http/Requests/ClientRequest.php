@@ -25,9 +25,10 @@ class ClientRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:25'],
             'last_name' => ['required', 'string', 'max:25'],
-            'second_surname' => ['required', 'string', 'max:25'],
+            'second_surname' => ['nullable', 'string', 'max:25'],
             'phone' => ['required', 'string', 'digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients,email,'.$clientId],
+            'company' => ['nullable', 'string', 'max:255'],
             'invalidCheck' => 'accepted',//Valida que se acepte lo que se envia del formulario
         ];
     }

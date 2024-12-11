@@ -36,7 +36,7 @@
                 <!--Campo Apellido Materno-->
                 <div class="col-md-4">
                     <label for="second_surname" class="form-label">Apellido Materno</label>
-                    <input type="text" class="form-control" id="second_surname" name="second_surname" value="{{old('second_surname')}}" required autofocus autocomplete="second_surname">
+                    <input type="text" class="form-control" id="second_surname" name="second_surname" value="{{old('second_surname')}}">
                     @if ($errors->has('second_surname'))
                         <div class="text-danger">
                             {{$errors->first('second_surname')}}
@@ -72,6 +72,19 @@
                         Por favor de ingresar un correo electronico!
                     </div>
                 </div>
+                <!--Campo Nombre de la Empresa-->
+                <div class="col-md-4">
+                    <label for="company" class="form-label">Empresa</label>
+                    <input type="text" class="form-control" id="company" name="company" value="{{old('company')}}">
+                    @if ($errors->has('company'))
+                        <div class="text-danger">
+                            {{$errors->first('company')}}
+                        </div>
+                    @endif
+                    <div class="valid-feedback">
+                        Campo Validado!
+                    </div>
+                </div>
                 <!--Campo de Acepto terminos y condiciones-->
                 <div class="col-12">
                     <div class="form-check">
@@ -95,7 +108,7 @@
             </form>
         </div>
         <div class="card-footer">
-            <h7>En caso de inconsistencias, favor de reportarlas.</h7>
+            <h6>En caso de inconsistencias, favor de reportarlas.</h6>
         </div>
     </div>
 </div>
