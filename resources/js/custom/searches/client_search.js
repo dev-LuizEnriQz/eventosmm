@@ -6,6 +6,10 @@ document.getElementById('client-search').addEventListener('input', function () {
             .then(response => response.json())
             .then(data => {
                 let resultsList = document.getElementById('client-results')
+                if(!resultsList){
+                    console.error("Elemento 'client-results' no encontrado.");
+                    return;
+                }
                 resultsList.innerHTML = '';
                 resultsList.style.display = 'block';
 
@@ -23,16 +27,33 @@ document.getElementById('client-search').addEventListener('input', function () {
 
                     listItem.addEventListener('click', function (){
                         //Cargar datos del Formulario
-                        document.getElementById('client-id').value = client.id;
-                        document.getElementById('client-name').textContent = `${client.first_name} ${client.last_name}`;
-                        document.getElementById('client-company').textContent = client.company;
+                        let clientIdInput= document.getElementById('client-id');
+                        let clientNameInput = document.getElementById('client-name');
+                        let clientCompanyInput = document.getElementById('client-company');
 
-                        //Mostrar detalles y ocultar resultados
-                        document.getElementById('client-details').style.display = 'block';
+                        if (!clientIdInput || !clientNameInput || !clientCompanyInput){
+                            console.error("Campos del formulario no encontrados")
+                            return;
+                        }
+
+                        //Asignar valores al formulario
+                        clientIdInput.value = client.id;
+                        clientNameInput.value = `${client.first_name} ${client.last_name}`;
+
+                        //Asignar el valor de la empresa
+                        if(client.company && client.company.trim() !== ''){
+                            clientCompanyInput.value = client.company;
+                        } else {
+                            clientCompanyInput.value = "N/A";
+                        }
+                        //Ocultar lista de resultados
                         resultsList.style.display = 'none';
-                    })
+                    });
                     resultsList.appendChild(listItem);
-                })
+                });
             })
+            .catch(error=>{
+                console.error("Error al buscar clientes:", error);
+            });
     }
-})
+});

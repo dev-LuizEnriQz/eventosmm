@@ -49,6 +49,7 @@ Route::middleware(['auth','verified'])->prefix('quotes')->name('quotes.')->group
     Route::get('{id}/edit', [QuoteController::class, 'edit'])->name('edit');
     Route::patch('{id}', [QuoteController::class, 'update'])->name('update');
     Route::patch('{id}/deactivate', [QuoteController::class, 'deactivate'])->name('deactivate');
+
 });
 
 require __DIR__.'/auth.php';

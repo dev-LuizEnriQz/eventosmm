@@ -32,7 +32,11 @@ class QuoteController extends Controller
         $validated = $request->validate([
            'client_id' => 'required|exists:clients,id',
            'client_name' => 'required|string|max:255',
+           'client_company' => 'nullable|string|max:255',
+           'guests' => 'required|integer|min:1',
            'event_date' => 'required|date',
+           'event_type' => 'required|string',
+           'package_type' => 'required|string',
            'description' => 'nullable|string',
         ]);
 
@@ -41,11 +45,16 @@ class QuoteController extends Controller
         Quote::create([
             'client_id' => $client->id,
             'client_name' => $client->full_name,
+            'client_company' => $client->company,
+            'guests' => $validated['guests'],
             'event_date' => $validated['event_date'],
+            'event_type' => $validated['event_type'],
+            'package_type' => $validated['package_type'],
             'description' => $validated['description'],
+            'status'=>'pending',//Estados por defecto
         ]);
 
-        return redirect()->back()->with('success','Cotización registrada');
+        return redirect()->route('quotes.index')->with('success','Cotización guardada con exito');
     }
 
     /**
