@@ -41,4 +41,16 @@ class Client extends Model
     {
         return "{$this->first_name} {$this->last_name} {$this->second_surname}";
     }
+
+    //Ralacion con la Tabla Cotizacion
+    public function quote()
+    {
+        return $this->hasMany(Quote::class);
+    }
+
+    //Relación con la Tabla Evento
+    public function event()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

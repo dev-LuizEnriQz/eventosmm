@@ -6,11 +6,17 @@
                 <!--Encabezado de la Data Table -->
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Folio</th>
                     <th>Cliente</th>
+                    <th>Compañia</th>
                     <th>Dia del evento</th>
+                    <th>Nº Invitados</th>
                     <th>Tipo de evento</th>
+                    <th>Paquete</th>
+                    <th>Descripción</th>
                     <th>Estatus</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <!-- Cuerpo del Data Table-->
@@ -20,7 +26,5 @@
             </table>
         </div>
     </div>
-    {{--
-        @vite(['resources/js/custom/dataTables/clients_indexTable.js'])
-    --}}
+    @vite(['resources/js/custom/dataTables/quotes_indexTable.js'])
 </x-app-layout>

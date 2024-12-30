@@ -7,8 +7,6 @@ use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\RedirectResponse;
 
 class ClientController extends Controller
 {

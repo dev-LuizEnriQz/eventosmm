@@ -1,16 +1,15 @@
 import flatpickr from "flatpickr";
+import {Spanish} from "flatpickr/dist/l10n/es.js";
 
 // Configurar el calendario
-flatpickr("#event-date", {
-    enableTime: false, // Si no necesitas seleccionar hora
-    dateFormat: "Y-m-d", // Formato de fecha
-    minDate: "today", // No permitir fechas pasadas
-    disable: [
-        // Lista de fechas ocupadas, estas deben venir desde tu backend
-        "2024-12-25",
-        "2024-12-31"
-    ],
-    locale: {
+document.addEventListener('DOMContentLoaded',function () {
+    flatpickr("#event-dateTime", {
+        enableTime: true, // Si no necesitas seleccionar hora agrega (false)
+        time_24hr: false, //Usa el formato de 24 hrs
+        dateFormat: "Y-m-d H:i", // Formato de fecha y Hora H->24 hrs h->12 hrs(ej: 2024-12-27 17:55)
+        minDate: "today", // No permitir fechas pasadas
+        disable: [],
+        locale: Spanish, //Establecer el idioma en español
         firstDayOfWeek: 1 // Semana comienza en lunes
-    },
+    });
 });

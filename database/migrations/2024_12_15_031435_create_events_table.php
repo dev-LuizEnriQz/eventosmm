@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->id();// ID de la cotización
+            $table->foreignId('quote_id')->constrained()->onDelete('cascade');// Relación con la Cotizacion
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');// Relación con el cliente
+            $table->string('event_type');
+            $table->date('event_date');
+            $table->string('status');
             $table->timestamps();
         });
     }

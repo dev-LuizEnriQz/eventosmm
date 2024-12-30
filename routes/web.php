@@ -46,10 +46,24 @@ Route::middleware(['auth','verified'])->prefix('quotes')->name('quotes.')->group
     Route::get('/', [QuoteController::class, 'index'])->name('index');
     Route::get('registrarCotizacion', [QuoteController::class, 'create'])->name('registrarCotizacion');
     Route::post('/', [QuoteController::class, 'store'])->name('store');
-    Route::get('{id}/edit', [QuoteController::class, 'edit'])->name('edit');
+    Route::get('{quote}/edit', [QuoteController::class, 'edit'])->name('edit');
     Route::patch('{id}', [QuoteController::class, 'update'])->name('update');
     Route::patch('{id}/deactivate', [QuoteController::class, 'deactivate'])->name('deactivate');
 
+    //Ruta de DATA TABLE
+    Route::get('/api/quotes', [QuoteController::class, 'getQuotesData'])->name('quotes.api');
+    //Ruta de BUSQUEDA EN VIVO DE COTIZACIONES
+    Route::get('/search', [QuoteController::class, 'search'])->name('quotes.search');
+});
+
+//Rutas relacionadas con el Modelo Event (Eventos)
+Route::middleware(['auth','verified'])->prefix('events')->name('events.')->group(function () {
+    Route::get('/', [QuoteController::class, 'index'])->name('index');
+    Route::get('registrarEventos', [QuoteController::class, 'create'])->name('registrarEventos');
+    Route::post('/', [QuoteController::class, 'store'])->name('store');
+    Route::get('{id}/edit', [QuoteController::class, 'edit'])->name('edit');
+    Route::patch('{id}', [QuoteController::class, 'update'])->name('update');
+    Route::patch('{id}/deactivate', [QuoteController::class, 'deactivate'])->name('deactivate');
 });
 
 require __DIR__.'/auth.php';

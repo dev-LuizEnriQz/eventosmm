@@ -44,7 +44,23 @@
                         <input type="text" class="form-control" id="company" name="company"
                         value="{{$client->company}}">
                     </div>
-
+                    <!--Confirmo Modificaciones realizadas-->
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="invalidCheck" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                Confirmo las modificaciones realizadas!
+                            </label>
+                            @if ($errors->has('invalidCheck'))
+                                <div class="text-danger">
+                                    {{$errors->first('invalidCheck')}}
+                                </div>
+                            @endif
+                            <div class="invalid-feedback">
+                                Tienes que aceptar condiciones antes de continuar.
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-11">
                         <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
                     </div>

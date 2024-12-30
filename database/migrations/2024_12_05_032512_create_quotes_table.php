@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');//Relación con el Cliente
-            $table->string('folio');//Folio único
             $table->string('client_name');//Nombre del cliente
-            $table->date('event_date');//Día del evento
-            $table->text('description');//Descripción
+            $table->string('client_company')->nullable();//Nombre de la empresa (opcional)
+            $table->dateTime('event_date')->nullable();//Día del evento y Hora
+            $table->integer('guests');//Numero de invitados
+            $table->string('event_type');//Tipo de evento
+            $table->string('package_type');//TIpo de paquete a eleccion del cliente
+            $table->text('description')->nullable();//Descripción
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); //Estatus de la cotización
+            $table->string('folio')->unique();//Folio único
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
