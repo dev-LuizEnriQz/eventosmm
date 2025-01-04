@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Quote;
 use App\Models\Client;
 use Carbon\Carbon;
+use http\Env\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 
@@ -124,6 +125,31 @@ class QuoteController extends Controller
         ]);
 
         return redirect()->route('quotes.index')->with('success','Cotización guardada con exito');
+    }
+
+    public function migrateQuotesToEvents()
+    {
+        $quotes = Quote::with('client')->get(); //Traemos las Cotizaciones del cliente
+
+        if ($quotes->isEmpty()) {
+            return response()->json(['message' => 'No se encontraron cotizaciones para migrar'], 404);
+        }
+
+        foreach ($quotes as $quote) {
+            Event::updateOrCreate(
+                ['quote_id' => $quote->id],//Garantizamos que no haya duplicados
+                [
+                    'client_id' => $quote->client_id,
+                    'event_date' => $quote->event_date,
+                    'event_type' => $quote->event_type,
+                    'guests' => $quote->guests,
+                    'package_type' => $quote->package_type,
+                    'description' => $quote->description,
+                    'status' => $quote->status ?? 'pending',
+                ]
+            );
+        }
+        return response()->json(['message' => 'Quotes migrado con exito']);
     }
 
     /**

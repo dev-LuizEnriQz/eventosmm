@@ -36,7 +36,7 @@
                         </div>
                     </li>
                     <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#">Agenda</a>
+                        <a class="nav-link" href="{{route('calendar.index')}}">Agenda</a>
                     </li>
                     <li class="nav-item nav-underline">
                         <a class="nav-link" href="#">Depositos</a>

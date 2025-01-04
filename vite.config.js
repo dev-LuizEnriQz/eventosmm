@@ -11,6 +11,7 @@ export default defineConfig({
                     'resources/js/custom/flatpickr/event_date_quote.js',
                     'node_modules/bootstrap/dist/css/bootstrap.min.css',
                     'resources/js/custom/dataTables/quotes_indexTable.js',
+                    'resources/js/custom/fullcalendar/calendar_event.js'
             ],
             refresh: true,
         }),

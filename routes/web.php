@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 
 //Ruta de Inicio / Bienvenido
@@ -54,6 +55,9 @@ Route::middleware(['auth','verified'])->prefix('quotes')->name('quotes.')->group
     Route::get('/api/quotes', [QuoteController::class, 'getQuotesData'])->name('quotes.api');
     //Ruta de BUSQUEDA EN VIVO DE COTIZACIONES
     Route::get('/search', [QuoteController::class, 'search'])->name('quotes.search');
+
+    //Ruta TEMPORAL para migrar cotizacion a Evento
+    Route::get('/migrate-quotes-events', [QuoteController::class, 'migrateQuotesToEvents']);
 });
 
 //Rutas relacionadas con el Modelo Event (Eventos)
@@ -64,6 +68,12 @@ Route::middleware(['auth','verified'])->prefix('events')->name('events.')->group
     Route::get('{id}/edit', [QuoteController::class, 'edit'])->name('edit');
     Route::patch('{id}', [QuoteController::class, 'update'])->name('update');
     Route::patch('{id}/deactivate', [QuoteController::class, 'deactivate'])->name('deactivate');
+});
+
+//Rutas FULLCALENDAR (Visualizacion de eventos)
+Route::middleware(['auth','verified'])->prefix('calendar')->name('calendar.')->group(function () {
+    Route::get('/', [CalendarController::class, 'index'])->name('index');
+    Route::get('/api/events', [CalendarController::class, 'getEvents'])->name('events.api');
 });
 
 require __DIR__.'/auth.php';

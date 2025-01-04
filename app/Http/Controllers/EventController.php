@@ -19,9 +19,30 @@ class EventController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createEventFromQuote($quoteId)
     {
-        //
+        //Obtener la Cotización
+        $quote = Quote::findOrFail($quoteId);//Buscar la cotización por su ID
+
+        //Verificar si ya existe un evento para este coctización
+        $existingEvent = Event::where('quote_id', $quoteId)->first();
+        if ($existingEvent) {
+            return response()->json(['message' => 'Ya existe un evento con ese id: ' . $existingEvent->id], 400);
+        }
+
+        //Crear un evento Nuevo
+        $event = new Event();
+        $event->client_id = $quote->client_id; //Asignar el Id del Cliente
+        $event->quote_id = $quote->id; //Asignar el Id de la Cotizacion
+        $event->event_type = $quote->event_type; // Tipo de evento
+        $event->event_date = $quote->event_date; // Fecha del evento
+        $event->status = $quote->status; //Status del Evento
+        $event->guests = $quote->guests; // Numero de invitados
+        $event->package_type = $quote->package_type; // Tipo de Paquete
+        $event->description = $quote->description; //Descripción del evento
+        $event->save();
+
+        return response()->json(['event' => 'Evento creado con exito.'], 200);
     }
 
     /**
