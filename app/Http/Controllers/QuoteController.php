@@ -139,6 +139,7 @@ class QuoteController extends Controller
             Event::updateOrCreate(
                 ['quote_id' => $quote->id],//Garantizamos que no haya duplicados
                 [
+                    'folio' => $quote->folio,
                     'client_id' => $quote->client_id,
                     'event_date' => $quote->event_date,
                     'event_type' => $quote->event_type,

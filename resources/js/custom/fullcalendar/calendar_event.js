@@ -11,18 +11,43 @@ document.addEventListener('DOMContentLoaded', function () {
     if(calendarEl){
         var calendar = new Calendar(calendarEl, {
             plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, multiMonthPlugin],
-            initialView: 'multiMonthYear',
+            initialView: 'multiMonthFourMonth',
+            views:{
+                multiMonthFourMonth: {
+                    type: 'multiMonth',
+                    duration: { months: 4},
+                    multiMonthMaxColumns: 2,//Maximo de columnas (meses por fila)
+                    multiMonthMinWidth: 700,//Ancho minimo para mostrar multi-meses
+                }
+            },
             locale: 'es',//Idioma Espańol
             headerToolbar: {
-                left: 'prev,next,today',
+                left: 'multiMonthYear,dayGridMonth',//,timeGridWeek,timeGridDay Pendiente para agregar
                 center: 'title',
-                right: 'multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'today,prev,next',
             },
-            events: '/calendar/api/events',//Cargar eventos desde el endpoint
+            aspectRatio:2, //Ajusta la relación de aspecto para mas espacio horizontal
+            height:'auto', //Ajusta la altura de manera automatica
+
+            events: function (fetchInfo, successCallback, failureCallback){
+              let status = document.getElementById('filterStatus').value;//Obtener resultados por estado seleccionado
+
+              fetch(`/calendar/api/events?status=${status}`)
+                  .then(response => {
+                      if (!response.ok){
+                          throw new Error('Error al obtener los eventos');
+                      }
+                      return response.json();
+                  })
+                  .then(data => successCallback(data))
+                  .catch(error => {
+                      console.error('Error cargando eventos:', error);
+                      failureCallback(error);
+                  });
+            },
+
             editable: false,//Permitir arrastrar eventos
             droppable: false,//Permitir soltar eventos
-            multiMonthMaxColumns: 2,//Maximo de columnas (meses por fila)
-            multiMonthMinWidth: 700,//Ancho minimo para mostrar multi-meses
 
             eventClick: function (info) {
                 const event = info.event.extendedProps;
@@ -35,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
+                document.getElementById('modalFolio').innerText = event.folio || 'No Disponible';
                 document.getElementById('modalEventTitle').innerText = info.event.title || 'Sin Titulo';
                 document.getElementById('modalClientName').innerText = event.client_name || 'No Disponible';
                 document.getElementById('modalEventType').innerText = event.event_type || 'No Disponible';
@@ -47,6 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
             },
         });
         calendar.render();
+        //Detectar cambio en el selector del estado
+        document.getElementById('filterStatus').addEventListener('change', function (){
+            calendar.refetchEvents(); //Recargar eventos
+        });
     } else {
         console.error('No se encontro el contenedor del ID "Calendar".');
     }

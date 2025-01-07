@@ -32,6 +32,7 @@ class EventController extends Controller
 
         //Crear un evento Nuevo
         $event = new Event();
+        $event->folio = $quote->folio;
         $event->client_id = $quote->client_id; //Asignar el Id del Cliente
         $event->quote_id = $quote->id; //Asignar el Id de la Cotizacion
         $event->event_type = $quote->event_type; // Tipo de evento

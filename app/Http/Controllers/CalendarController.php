@@ -14,17 +14,22 @@ class CalendarController extends Controller
         return view('calendar.index');
     }
 
-    public function getEvents()
+    public function getEvents(Request $request)
     {
-        $events = Event::with('Quote')//Carga de relacion con el modelo Cotización
-            ->where('status','approved')//Solo eventos aprovados
-            ->get()
-            ->map(function ($event) {
+        $status = $request->query('status');//Obtener el parametro status
+
+        $eventsQuery = Event::with(['client', 'quote']); //Relacionar con cliente y cotizacion
+
+        if ($status) {
+            $eventsQuery->where('status', $status);//Filtrar por estado si existe
+        }
+        $events = $eventsQuery->get()->map(function ($event) {
                 return [
                     'id' => $event->id,
                     'title' => $event->quote->client_name . ' - ' . $event->event_type,
                     'start' => $event->event_date,
                     'extendedProps' => [
+                        'folio' => $event->folio,
                         'client_name' => $event->quote->client_name ?? 'Sin Cliente', //Nombre completo desde la cotizacion
                         'event_type' => $event->event_type,
                         'guests' => $event->guests,

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('quote_id')->constrained()->onDelete('cascade');// Relación con la Cotizacion
             $table->foreignId('client_id')->constrained()->onDelete('cascade');// Relación con el cliente
+            $table->string('folio');
             $table->string('event_type');
             $table->dateTime('event_date');
             $table->integer('guests');
