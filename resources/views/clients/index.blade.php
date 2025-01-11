@@ -2,7 +2,7 @@
     <div class="container">
         <div class="justify-content-center mt-5">
         <h1>Lista de Clientes</h1>
-        <table id="clientsTable" class="display table table-striped mt-2">
+        <table id="clientsTable" class="table table-striped table-bordered dt-responsive mt-2">
             <!--Encabezado de la Data Table -->
             <thead>
                 <tr>

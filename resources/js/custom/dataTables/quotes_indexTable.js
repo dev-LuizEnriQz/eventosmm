@@ -4,6 +4,7 @@ import 'datatables.net-bs5'; // Importar DataTables con soporte de Bootstrap 5
 
 $(document).ready(function (){
     $('#quotesTable').DataTable({
+        responsive: true,
         processing: true,
         serverSide: true,
         ajax: {

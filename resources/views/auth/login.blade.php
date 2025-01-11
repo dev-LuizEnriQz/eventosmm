@@ -1,9 +1,16 @@
 <x-guest-layout>
-    <div class="card">
+    <div class="card mt-5">
+        <div class="card-header">
+            Inicio de sesión
+        </div>
         <div class="card-body">
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
+            {{--Imagen del Logo--}}
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="{{asset('storage/images/logo_mm.svg')}}" alt="Logo" width="300" height="280" class=" img-fluid me-2"/>
+            </div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -40,6 +47,9 @@
                     </x-primary-button>
                 </div>
             </form>
+        </div>
+        <div class="card-footer">
+            Cualquier inconsistencia favor de Notificarla.
         </div>
     </div>
 </x-guest-layout>
