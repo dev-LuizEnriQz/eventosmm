@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h5>Agenda de Eventos M&M</h5>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3 mt-3 m-1">
                 <div class="col-md-4">
                     <label for="filterStatus" class="form-label">Filtrar por estado de Evento:</label>
                     <select id="filterStatus" class="form-select">

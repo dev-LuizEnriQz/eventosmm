@@ -5,6 +5,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DepositAccountController;
+use App\Http\Controllers\DepositController;
 use Illuminate\Support\Facades\Route;
 
 //Ruta de Inicio / Bienvenido
@@ -74,6 +76,23 @@ Route::middleware(['auth','verified'])->prefix('events')->name('events.')->group
 Route::middleware(['auth','verified'])->prefix('calendar')->name('calendar.')->group(function () {
     Route::get('/', [CalendarController::class, 'index'])->name('index');
     Route::get('/api/events', [CalendarController::class, 'getEvents'])->name('events.api');
+});
+
+//Rutas DEPOSITOS
+Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(function () {
+   //Rutas para cuentas de depositos
+    Route::prefix('accounts')->name('accounts.')->group(function () {
+        Route::get('/', [DepositAccountController::class, 'index'])->name('index');//deposits.accounts.index
+        Route::get('/create', [DepositAccountController::class, 'create'])->name('create');//deposits.accounts.create
+        Route::post('/', [DepositAccountController::class, 'store'])->name('store');//deposits.accounts.store
+    });
+
+    //Rutas para movimientos de depositos
+    Route::prefix('movements')->name('movements.')->group(function () {
+       Route::get('/', [DepositController::class, 'index'])->name('index');//deposits.movements.index
+        Route::get('/create', [DepositController::class, 'create'])->name('create');//deposits.movements.create
+        Route::post('/', [DepositController::class, 'store'])->name('store');//deposits.movements.store
+    });
 });
 
 require __DIR__.'/auth.php';
