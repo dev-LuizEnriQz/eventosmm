@@ -205,4 +205,27 @@ class QuoteController extends Controller
     {
         //
     }
+
+    public function searchClientQuote (Request $request)
+    {
+        $query = $request->input('query','');
+        $type = $request->input('type'); //Tipo de Busqueda: 'name' o 'folio'
+
+        if (empty($query)) {
+            return response()->json([],200);//Devulve vacio si no hay resultados
+        }
+
+        $quotes = Quote::query();
+
+        //Filtrar según el tipo
+        if ($type == 'name') {
+            $quotes->where('client_name', 'LIKE', "%{$query}%");
+        } elseif ($type == 'folio') {
+            $quotes->where('folio', 'LIKE', "%{$query}%");
+        }
+
+        $results = $quotes->get(['id', 'folio', 'client_name']);
+
+        return response()->json($results);
+    }
 }

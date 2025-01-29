@@ -57,9 +57,10 @@ Route::middleware(['auth','verified'])->prefix('quotes')->name('quotes.')->group
     Route::get('/api/quotes', [QuoteController::class, 'getQuotesData'])->name('quotes.api');
     //Ruta de BUSQUEDA EN VIVO DE COTIZACIONES
     Route::get('/search', [QuoteController::class, 'search'])->name('quotes.search');
-
     //Ruta TEMPORAL para migrar cotizacion a Evento
     Route::get('/migrate-quotes-events', [QuoteController::class, 'migrateQuotesToEvents']);
+    //Ruta de BUSQUEDA EN VIVO CLIENTES/COTIZACIONES para Registrar CUENTA DE DEPOSITO
+    Route::get('/api/searchClientQuote', [QuoteController::class, 'searchClientQuote'])->name('quotes.search');
 });
 
 //Rutas relacionadas con el Modelo Event (Eventos)
@@ -83,7 +84,7 @@ Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(functi
    //Rutas para cuentas de depositos
     Route::prefix('accounts')->name('accounts.')->group(function () {
         Route::get('/', [DepositAccountController::class, 'index'])->name('index');//deposits.accounts.index
-        Route::get('/create', [DepositAccountController::class, 'create'])->name('create');//deposits.accounts.create
+        Route::get('/registrarCuentaDeposito', [DepositAccountController::class, 'create'])->name('registrarCuentaDeposito');//deposits.accounts.create
         Route::post('/', [DepositAccountController::class, 'store'])->name('store');//deposits.accounts.store
     });
 

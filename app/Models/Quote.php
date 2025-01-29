@@ -38,7 +38,7 @@ class Quote extends Model
     //Relacion con la Tabla Cliente
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'client_id','id');
     }
 
     //Relacion con la Tabla Evento

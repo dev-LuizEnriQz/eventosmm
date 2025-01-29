@@ -45,7 +45,7 @@ class Client extends Model
     //Ralacion con la Tabla Cotizacion
     public function quote()
     {
-        return $this->hasMany(Quote::class);
+        return $this->hasMany(Quote::class, 'client_id','id');
     }
 
     //Relación con la Tabla Evento

@@ -45,12 +45,12 @@
 
                     <!--DEPOSITOS-->
                     <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#">Depositos</a>
-                    </li>
-
-                    <!-- PROXIMOS EVENTOS -->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#">Proximos eventos</a>
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Depositos</a>
+                        <div class="collapse" id="depositsMenu">
+                            <ul class="dropdown-menu" id="depositsMenu">
+                                <li><a class="dropdown-item" href="{{route('deposits.accounts.index')}}">Consultar Cuenta / Depositos</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
 
@@ -58,20 +58,20 @@
                 <ul class="navbar-nav">
                     @guest
                     <li class="nav-item dropdown nav-underline">
-                        <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#authDropdown" aria-expanded="false">
                             Inicio de Sesión / Registro
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="authDropdown">
+                        <ul class="dropdown-menu" id="authDropdown">
                             <li><a class="dropdown-item" href="{{ route('login') }}">Inicio de Sesión</a></li>
                         </ul>
                     </li>
                     @else
                     <li class="nav-item dropdown nav-underline">
                         <!-- Este es el bloque donde ya un usuario está autenticado -->
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#userDropdown" aria-expanded="false">
                             Bienvenido {{ Auth::user()->name }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="userDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" id="userDropdown">
                             <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Perfil</a></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
