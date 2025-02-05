@@ -224,7 +224,7 @@ class QuoteController extends Controller
             $quotes->where('folio', 'LIKE', "%{$query}%");
         }
 
-        $results = $quotes->get(['id', 'folio', 'client_name']);
+        $results = $quotes->get(['id', 'folio', 'client_id','client_name']);
 
         return response()->json($results);
     }

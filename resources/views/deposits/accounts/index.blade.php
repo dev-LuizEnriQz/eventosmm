@@ -9,9 +9,9 @@
                 <table id="depositsAccountsTable" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Nº Cuenta</th>
                             <th>Cliente</th>
-                            <th>Cotización</th>
+                            <th>Nº Cotización</th>
                             <th>Costo Total</th>
                             <th>Deposito Inicial</th>
                             <th>Fecha Limite</th>

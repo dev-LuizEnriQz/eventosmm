@@ -17,9 +17,9 @@ $(document).ready(function (){
             { data: 'quote_folio', name: 'quote_folio'},
             { data: 'total_cost', name: 'total_cost'},
             { data: 'initial_deposit', name: 'initial_deposit'},
-            { data: 'payment_due_date', name: 'payment_due_date'},
+            { data: 'payment_deadline', name: 'payment_deadline'},
             {
-                data: 'actions', name: 'actions',
+                data: 'action', name: 'action',
                 orderable: false,
                 searchable: false,
             },

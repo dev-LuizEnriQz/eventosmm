@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->foreignId('quote_id')->constrained('quotes')->onDelete('cascade');
+            $table->string('client_name');
+            $table->string('quote_folio');
             $table->decimal('total_cost', 10, 2);
-            $table->decimal('initial_deposit', 10, 2)->nullable();
-            $table->date('payment_due_date');
+            $table->decimal('initial_deposit', 10, 2);
+            $table->date('payment_deadline');
             $table->timestamps();
         });
     }

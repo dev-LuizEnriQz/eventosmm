@@ -22,9 +22,10 @@ $(document).ready(function (){
                           results.append(`
                     <li class="list-group-item list-group-item-action"
                         data-id="${quote.id}"
+                        data-clientid="${quote.client_id}"
                         data-name="${quote.client_name}"
                         data-folio="${quote.folio}">
-                        ${quote.client_name}
+                        ${quote.client_name} - ${quote.folio}
                     </li>
                         `);
                     });
@@ -41,12 +42,14 @@ $(document).ready(function (){
 
     //Seleccionar el resultado de cliente
     $('#client-results').on('click', 'li', function(){
-        const clientId = $(this).data('id');
+        const quoteId = $(this).data('id')
+        const clientId = $(this).data('clientid');
         const clientName = $(this).data('name');
         const folio = $(this).data('folio');
 
-        $('#quote-id').val(clientId);
+        $('#client-id').val(clientId);
         $('#client-name').val(clientName);
+        $('#quote-id').val(quoteId);
         $('#quote-folio').val(folio);
 
         $('#client-results').hide();
@@ -74,9 +77,10 @@ $(document).ready(function (){
                             results.append(`
                                 <li class="list-group-item list-group-item-action"
                                     data-id="${quote.id}"
+                                    data-clientid="${quote.client_id}"
                                     data-name="${quote.client_name}"
                                     data-folio="${quote.folio}">
-                                    ${quote.folio} - ${quote.client_name}
+                                    ${quote.client_name} - ${quote.folio}
                                 </li>
                             `);
                         });
@@ -93,12 +97,14 @@ $(document).ready(function (){
 
     //Seleccionar resultado de folio
     $('#quote-results').on('click', 'li', function (){
-        const quoteId = $(this).data('id');
+        const quoteId = $(this).data('id')
+        const clientId = $(this).data('clientid');
         const clientName = $(this).data('name');
         const folio = $(this).data('folio');
 
+        $('#client-id').val(clientId);
+        $('#client-name').val(clientName);
         $('#quote-id').val(quoteId);
-        $('#quote-name').val(clientName);
         $('#quote-folio').val(folio);
 
         $('#quote-results').hide();

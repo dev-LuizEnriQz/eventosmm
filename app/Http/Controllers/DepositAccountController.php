@@ -6,24 +6,19 @@ use App\Models\DepositAccount;
 use App\Models\Client;
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use Nette\Schema\ValidationException;
 
 class DepositAccountController extends Controller
 {
     public function index(Request $request)
     {
         if($request->ajax()){
-            $accounts = DepositAccount::with(['client', 'quote'])->select('deposit_accounts.*');
+            $accounts = DepositAccount::select('id','client_name','quote_folio','total_cost','initial_deposit','payment_deadline');
 
             return datatables()
                 ->of($accounts)
-                ->addColumn('client_name', function ($account) {
-                    return $account->client->name ?? 'N/A';
-                })
-                ->addColumn('quote_folio', function ($account) {
-                    return $account->quote->folio_no ?? 'N/A';
-                })
                 ->addColumn('action', function ($account) {
-                    return '<a href="'.route('deposits.accounts.show', $account->id).'" class="btn btn-info btn-sm"><i class="fas fa-eye"></i>Detalles</a> ';
+                    return '<a href="'.route('deposits.accounts.show', $account->id).'" class="btn btn-success btn-sm">Historial Depositos</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -40,22 +35,36 @@ class DepositAccountController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-           'client_id' => 'required|exists:clients,id',
-           'quote_id' => 'required|exists:quotes,id',
-           'total_cost' =>  'required|numeric|min:0',
-           'initial_deposit' =>  'nullable|numeric|min:0',
-           'payment_due_date' => 'required|date',
-        ]);
+            $validatedData = $request->validate([
+                'client_id' => 'required|exists:clients,id',
+                'quote_id' => 'required|exists:quotes,id',
+                'client_name'=>'required|string',
+                'quote_folio'=>'required|string',
+                'total_cost' => 'required|numeric|min:0',
+                'initial_deposit' => 'required|numeric|min:0|lte:total_cost',
+                'payment_deadline' => 'required|date|after_or_equal:today',
+            ]);
 
-        DepositAccount::create($validated);
+            /*        dd($validatedData);*/
 
-        return redirect()->route('deposits.accounts.index')->with('success', 'Deposit account created successfully.');
+            //Crea la cuenta de deposito con los campos validados
+            $depositAccount = DepositAccount::create([
+                'client_id' => $validatedData['client_id'],
+                'quote_id' => $validatedData['quote_id'],
+                'client_name' => $validatedData['client_name'],
+                'quote_folio' => $validatedData['quote_folio'],
+                'total_cost' => $validatedData['total_cost'],
+                'initial_deposit' => $validatedData['initial_deposit'],
+                'payment_deadline' => $validatedData['payment_deadline'],
+            ]);
+            return redirect()->route('deposits.accounts.index')->with('success', 'Deposito registrado exitosamente');
     }
 
-    public function show(DepositAccount $depositAccount)
+    public function show($id)
     {
-        return view('deposits.accounts.show', compact('depositAccount'));
+        //Buscar la cuenta de deposito con su cliente y cotizacion
+        $account = DepositAccount::with(['client','quote'])->findOrFail($id);
+        return view('deposits.accounts.show', compact('account'));
     }
 
     public function edit(DepositAccount $depositAccount)
@@ -73,7 +82,7 @@ class DepositAccountController extends Controller
            'quote_id' => 'required|exists:quotes,id',
            'total_cost' =>  'required|numeric|min:0',
            'initial_deposit' =>  'nullable|numeric|min:0',
-           'payment_due_date' => 'required|date',
+           'payment_deadline' => 'required|date',
         ]);
 
         $depositAccount->update($validated);
