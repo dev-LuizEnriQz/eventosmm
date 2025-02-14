@@ -22,18 +22,23 @@ class DepositController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
            'deposit_account_id' => 'required|exists:deposit_accounts,id',
            'amount' => 'required|numeric|min:0',
-           'deposit_date' => 'required|date',
-           'payment_method' => 'required|string',
            'deposit_type' => 'required|string|in:inicial,parcial,final',
+           'payment_method' => 'required|string',
+           'deposit_date' => 'required|date',
         ]);
 
-        $validated['user_id'] = auth()->id();
+        Deposit::create([
+           'deposit_account_id' => $validatedData['deposit_account_id'],
+            'amount' => $validatedData['amount'],
+            'deposit_type' => $validatedData['deposit_type'],
+            'payment_method' => $validatedData['payment_method'],
+            'deposit_date' => $validatedData['deposit_date'],
+            'user_id' => auth()->id(),
+        ]);
 
-        Deposit::create($validated);
-
-        return redirect()->route('deposits.movements.index')->with('success', 'Deposit registrado.');
+        return back()->with('success', 'Deposit realizado');
     }
 }

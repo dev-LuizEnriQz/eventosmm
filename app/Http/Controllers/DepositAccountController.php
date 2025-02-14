@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposit;
 use App\Models\DepositAccount;
 use App\Models\Client;
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Nette\Schema\ValidationException;
+use Yajra\DataTables\Facades\DataTables;
 
 class DepositAccountController extends Controller
 {
@@ -17,6 +20,9 @@ class DepositAccountController extends Controller
 
             return datatables()
                 ->of($accounts)
+                ->addColumn('remaining_balance',function($account){
+                    return number_format($account->remaining_balance,2);//Formato de dinero
+                })
                 ->addColumn('action', function ($account) {
                     return '<a href="'.route('deposits.accounts.show', $account->id).'" class="btn btn-success btn-sm">Historial Depositos</a>';
                 })
@@ -41,11 +47,10 @@ class DepositAccountController extends Controller
                 'client_name'=>'required|string',
                 'quote_folio'=>'required|string',
                 'total_cost' => 'required|numeric|min:0',
-                'initial_deposit' => 'required|numeric|min:0|lte:total_cost',
+                'initial_deposit' => 'required|numeric|min:0|lte:total_cost',//Se valida pero no se guarda en DepositAccount
+                'payment_method' => "required|string",//Se valida pero no se guarda en DepositAccount
                 'payment_deadline' => 'required|date|after_or_equal:today',
             ]);
-
-            /*        dd($validatedData);*/
 
             //Crea la cuenta de deposito con los campos validados
             $depositAccount = DepositAccount::create([
@@ -54,9 +59,19 @@ class DepositAccountController extends Controller
                 'client_name' => $validatedData['client_name'],
                 'quote_folio' => $validatedData['quote_folio'],
                 'total_cost' => $validatedData['total_cost'],
-                'initial_deposit' => $validatedData['initial_deposit'],
                 'payment_deadline' => $validatedData['payment_deadline'],
             ]);
+
+            //Guardar el Deposito Inicial
+            Deposit::create([
+                'deposit_account_id' => $depositAccount->id,
+                'amount' => $validatedData['initial_deposit'],
+                'deposit_type' => 'inicial',
+                'payment_date' => now(),
+                'payment_method' => $validatedData['payment_method'],
+                'user_id' => auth()->id(),
+            ]);
+
             return redirect()->route('deposits.accounts.index')->with('success', 'Deposito registrado exitosamente');
     }
 
@@ -95,5 +110,34 @@ class DepositAccountController extends Controller
         $depositAccount->delete();
 
         return redirect()->route('deposits.accounts.index')->with('success', 'Cuenta de depósito eliminada con éxito.');
+    }
+
+    public function getDepositAccountsData()
+    {
+        $accounts = DepositAccount::with('deposits','client','quote')->select('deposit_accounts.*');
+
+        /*dd($accounts->get());*/
+        return DataTables::of($accounts)
+            ->addColumn('client_name', function ($account) {
+                return $account->client ? $account->client->first_name.' '.$account->client->last_name : 'N/A';
+            })
+            ->addColumn('quote_folio', function ($account) {
+                return $account->quote ? $account->quote->folio: 'N/A';
+            })
+            ->addColumn('initial_deposit', function ($account) {
+                $initialDeposit = $account->deposits()->where('deposit_type', 'inicial')->first();
+                return $initialDeposit ? number_format($initialDeposit->amount,2) : 'No Registrado';
+            })
+            ->addColumn('remaining_balance', function ($account) {
+                $totalDeposits = $account->deposits()->sum('amount');
+                return number_format($account->total_cost - $totalDeposits,2);
+            })
+            ->addColumn('action', function ($account) {
+                return '<a href="'.route('deposits.movements.history', $account->id).'" class="btn btn-success btn-sm">
+                            <i class="fas fa-list"></i> Historial
+                        </a>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

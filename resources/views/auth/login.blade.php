@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Eventos M&M / Login">
     <div class="card mt-5">
         <div class="card-header">
             Inicio de sesión

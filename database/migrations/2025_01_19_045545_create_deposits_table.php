@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('deposit_account_id')->constrained('deposit_accounts')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
-            $table->date('deposit_date');
-            $table->string('payment_method');
-            $table->string('deposit_type');//'inicial','parcial','final'
+            $table->foreignId('deposit_account_id')->constrained('deposit_accounts')->onDelete('cascade');//Id de la cuenta de Deposito
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');//ID usuario que Registro el Deposito
+            $table->decimal('amount', 10, 2);//Monto del Deposito
+            $table->enum('deposit_type',['inicial','parcial','final']);//'inicial','parcial','final'
+            $table->date('payment_date');//Fecha de Pago
+            $table->enum('payment_method',['efectivo','transferencia','creditoDeposito']);//Efectivo, Transferencia, Credito/Deposito.
             $table->timestamps();
         });
     }

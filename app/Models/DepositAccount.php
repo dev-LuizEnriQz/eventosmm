@@ -15,7 +15,6 @@ class DepositAccount extends Model
         'client_name',
         'quote_folio',
         'total_cost',
-        'initial_deposit',
         'payment_deadline',
     ];
 
@@ -26,25 +25,19 @@ class DepositAccount extends Model
 
     public function quote()
     {
-        return $this->belongsTo(Quote::class);
+        return $this->belongsTo(Quote::class, 'quote_id');
     }
 
     public function deposits()
     {
-        return $this->hasMany(Deposit::class);
+        return $this->hasMany(Deposit::class, 'deposit_account_id');
     }
 
     public function remainingBalance()
     {
-        //Calculo inicial con del deposito inicial
-        $remainingBalance = $this->total_cost - $this->initial_deposit;
-
-        //Sumar todos los depositos adicionales realizados
+        //Obtener la suma de los depositos realizados
         $totalDeposits = $this->deposits()->sum('amount');
 
-        //Calcular el saldo restante
-        $remainingBalance -= $totalDeposits;
-
-        return max($remainingBalance, 0); //El saldo nunca debe de ser negativo‹
+        return max($this->total_cost - $totalDeposits, 0); //El saldo nunca debe de ser negativo‹
     }
 }

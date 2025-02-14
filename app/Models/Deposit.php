@@ -10,17 +10,17 @@ class Deposit extends Model
     use HasFactory;
 
     protected $fillable = [
-      'deposit_account_id',
-      'user_id',
-      'amount',
-      'deposit_date',
-      'payment_method',
-      'deposit_type',
+      'deposit_account_id', //ID de la cuenta de Deposito
+      'amount',//Monto
+      'deposit_type',// Tipo de Deposito: Inicial, Parcial , Final
+      'payment_date',//Dia que se efectuo el deposito
+      'payment_method',//Metodo de Pago: Efectivo , Transferencia
+      'user_id',//Quien Registro el Deposito o Pago
     ];
 
     public function depositAccount()
     {
-        return $this->belongsTo(DepositAccount::class);
+        return $this->belongsTo(DepositAccount::class, 'deposit_account_id');
     }
 
     public function user()

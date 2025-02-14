@@ -90,7 +90,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="invalidCheck" id="invalidCheck" required>
                         <label class="form-check-label" for="invalidCheck">
-                            Aceptas termino y condiciones!
+                            Confirmo los datos ingresados en el formulario.
                         </label>
                         @if ($errors->has('invalidCheck'))
                             <div class="text-danger">

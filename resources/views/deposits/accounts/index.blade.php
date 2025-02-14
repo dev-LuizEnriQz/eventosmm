@@ -14,6 +14,7 @@
                             <th>Nº Cotización</th>
                             <th>Costo Total</th>
                             <th>Deposito Inicial</th>
+                            <th>Saldo Pendiente</th>
                             <th>Fecha Limite</th>
                             <th>Acciones</th>
                         </tr>

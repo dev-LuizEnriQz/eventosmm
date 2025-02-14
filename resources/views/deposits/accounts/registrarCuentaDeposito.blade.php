@@ -51,6 +51,16 @@
                             <input class="form-control" type="number" id="initial-deposit" step="0.01" name="initial_deposit" required>
                         </div>
                     </div>
+                    {{--Ingresar el Metodo de Pago--}}
+                    <div class="col-md-4">
+                        <label class="form-label" for="payment-method">Ingresar el Metodo de Pago</label>
+                        <select class="form-select" id="payment-method" name="payment_method" required>
+                            <option selected>Seleccione un método de pago</option>
+                            <option value="efectivo">Efectivo</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="creditoDebito">Tarjeta de Crédito / Débito</option>
+                        </select>
+                    </div>
                     {{--Fecha limite de Pago--}}
                     <div class="col-md-4">
                         <label class="form-label" for="payment-deadline">Ingresar la Fecha Limite de pago</label>
@@ -62,7 +72,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="invalidCheck" id="invalidCheck" required>
                             <label class="form-check-label" for="invalidCheck">
-                                Aceptas termino y condiciones!
+                                Confirmo los datos ingresados en el formulario.
                             </label>
                             @if ($errors->has('invalidCheck'))
                                 <div class="text-danger">

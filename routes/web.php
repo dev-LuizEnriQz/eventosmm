@@ -89,6 +89,9 @@ Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(functi
         Route::get('/{id}/edit', [DepositAccountController::class, 'edit'])->name('edit');
         Route::patch('{id}', [DepositAccountController::class, 'update'])->name('update');
         Route::get('/{id}', [DepositAccountController::class, 'show'])->name('show');//deposits.accounts.show
+
+        //RUTA DE DATATABLES Cuenta de Deposito
+        Route::get('/api/data',[DepositAccountController::class, 'getDepositAccountsData'])->name('data');
     });
 
     //Rutas para movimientos de depositos
@@ -96,6 +99,7 @@ Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(functi
        Route::get('/', [DepositController::class, 'index'])->name('index');//deposits.movements.index
         Route::get('/create', [DepositController::class, 'create'])->name('create');//deposits.movements.create
         Route::post('/', [DepositController::class, 'store'])->name('store');//deposits.movements.store
+        Route::get('/{id}/history', [DepositController::class, 'history'])->name('history');//deposits.movements.history
     });
 });
 
