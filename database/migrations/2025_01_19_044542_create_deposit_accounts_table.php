@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->foreignId('quote_id')->constrained('quotes')->onDelete('cascade');
             $table->string('client_name');//Nombre del Cliente
-            $table->string('quote_folio');//Folio de la Cotizacion
+            $table->string('quote_folio')->unique();//Folio de la Cotizacion
             $table->decimal('total_cost', 10, 2);//Costo Total del Evento
             $table->date('payment_deadline');//Fecha Limite de Pago
             $table->timestamps();

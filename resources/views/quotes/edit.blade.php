@@ -8,25 +8,23 @@
                 <form action="{{route('quotes.update',$quote->id)}}" method="post" enctype="multipart/form-data" class="row g-3">
                     @method('PATCH')
                     @csrf
+                    <div class="row mt-3">
                     <!--Nombre del Cliente solo Lectura-->
-                    <div class="col-md-6">
-                        <label class="form-label">Nombre del Cliente</label>
-                        <input type="text" class="form-control"
-                               value="{{$quote->client_name}}" readonly>
-                    </div>
-                    <!--Numero de Invitados-->
-                    <div class="col-md-3">
-                        <label class="form-label" for="guests"> Nº de Invitados</label>
-                        <input type="number" id="guests" name="guests" class="form-control"
-                               value="{{$quote->guests}}" required>
-                    </div>
-                    @if ($errors->has('guests'))
-                        <div class="text-danger">
-                            {{$errors->first('guests')}}
+                        <div class="col-md-2">
+                            <label class="form-label">Nombre del Cliente</label>
                         </div>
-                    @endif
-                    <div class="valid-feedback">
-                        Campo validado!
+                        <div class="col-md-6">
+                            <input type="text" class="form-control"
+                                   value="{{$quote->client_name}}" disabled>
+                        </div>
+                    <!--Nº de Cotización-->
+                        <div class="col-md-2">
+                            <label class="form-label">Numero de Cotización #</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control"
+                                   value="{{$quote->folio}}" disabled>
+                        </div>
                     </div>
                     <!--Fecha y Hora del Evento-->
                     <div class="col-md-3">
@@ -50,6 +48,20 @@
                     @if ($errors->has('event_type'))
                         <div class="text-danger">
                             {{$errors->first('event_type')}}
+                        </div>
+                    @endif
+                    <div class="valid-feedback">
+                        Campo validado!
+                    </div>
+                    <!--Numero de Invitados-->
+                    <div class="col-md-3">
+                        <label class="form-label" for="guests"> Nº de Invitados</label>
+                        <input type="number" id="guests" name="guests" class="form-control"
+                               value="{{$quote->guests}}" required>
+                    </div>
+                    @if ($errors->has('guests'))
+                        <div class="text-danger">
+                            {{$errors->first('guests')}}
                         </div>
                     @endif
                     <div class="valid-feedback">

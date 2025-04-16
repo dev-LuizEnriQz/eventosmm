@@ -89,6 +89,7 @@ class ClientController extends Controller
         $client->phone = $request->phone;
         $client->email = $request->email;
         $client->company = $request->company;
+        $client->rfc = $request->rfc;
 
         $client->update();
 

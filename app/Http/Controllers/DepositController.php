@@ -17,7 +17,7 @@ class DepositController extends Controller
     public function create()
     {
         $accounts = DepositAccount::all();
-        return view('deposits.movements.create', compact('accounts'));
+        return view('deposits.movements.registrarDeposito', compact('accounts'));
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class DepositController extends Controller
            'amount' => 'required|numeric|min:0',
            'deposit_type' => 'required|string|in:inicial,parcial,final',
            'payment_method' => 'required|string',
-           'deposit_date' => 'required|date',
+           'payment_date' => 'required|date',
         ]);
 
         Deposit::create([
@@ -35,10 +35,12 @@ class DepositController extends Controller
             'amount' => $validatedData['amount'],
             'deposit_type' => $validatedData['deposit_type'],
             'payment_method' => $validatedData['payment_method'],
-            'deposit_date' => $validatedData['deposit_date'],
+            'payment_date' => $validatedData['payment_date'],
             'user_id' => auth()->id(),
         ]);
 
-        return back()->with('success', 'Deposit realizado');
+        return response()->json([
+            'message' => 'Deposito registrado exitosamente'
+        ],200);
     }
 }

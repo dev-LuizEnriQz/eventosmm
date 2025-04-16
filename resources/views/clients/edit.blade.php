@@ -44,6 +44,12 @@
                         <input type="text" class="form-control" id="company" name="company"
                         value="{{$client->company}}">
                     </div>
+                    <!--Campo RFC-->
+                    <div class="col-md-4">
+                        <label for="rfc" class="form-label">RFC</label>
+                        <input type="text" class="form-control" id="rfc" name="rfc"
+                        value="{{$client->rfc}}">
+                    </div>
                     <!--Confirmo Modificaciones realizadas-->
                     <div class="col-12">
                         <div class="form-check">

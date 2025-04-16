@@ -29,6 +29,7 @@ class ClientRequest extends FormRequest
             'phone' => ['required', 'string', 'digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients,email,'.$clientId],
             'company' => ['nullable', 'string', 'max:255'],
+            'rfc' => ['required', 'string', 'max:13', 'unique:clients,rfc,'.$clientId],
             'invalidCheck' => 'accepted',//Valida que se acepte lo que se envia del formulario
         ];
     }

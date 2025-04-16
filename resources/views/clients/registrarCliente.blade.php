@@ -85,6 +85,19 @@
                         Campo Validado!
                     </div>
                 </div>
+                <!--Campo RFC-->
+                <div class="col-md-4">
+                    <label for="rfc" class="form-label">RFC</label>
+                    <input type="text" class="form-control" id="rfc" name="rfc" value="{{old('rfc')}}">
+                    @if ($errors->has('rfc'))
+                        <div class="text-danger">
+                            {{$errors->first('rfc')}}
+                        </div>
+                    @endif
+                    <div class="valid-feedback">
+                        Campo Validado!
+                    </div>
+                </div>
                 <!--Campo de Acepto terminos y condiciones-->
                 <div class="col-12">
                     <div class="form-check">

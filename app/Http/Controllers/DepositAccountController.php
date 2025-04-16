@@ -45,7 +45,7 @@ class DepositAccountController extends Controller
                 'client_id' => 'required|exists:clients,id',
                 'quote_id' => 'required|exists:quotes,id',
                 'client_name'=>'required|string',
-                'quote_folio'=>'required|string',
+                'quote_folio'=>'required|string|unique:deposit_accounts,quote_folio',
                 'total_cost' => 'required|numeric|min:0',
                 'initial_deposit' => 'required|numeric|min:0|lte:total_cost',//Se valida pero no se guarda en DepositAccount
                 'payment_method' => "required|string",//Se valida pero no se guarda en DepositAccount
@@ -124,6 +124,10 @@ class DepositAccountController extends Controller
             ->addColumn('quote_folio', function ($account) {
                 return $account->quote ? $account->quote->folio: 'N/A';
             })
+            //prueba de Total Cost
+            ->addColumn('total_cost', function ($account) {
+                return number_format($account->total_cost,2);
+            })
             ->addColumn('initial_deposit', function ($account) {
                 $initialDeposit = $account->deposits()->where('deposit_type', 'inicial')->first();
                 return $initialDeposit ? number_format($initialDeposit->amount,2) : 'No Registrado';
@@ -133,7 +137,14 @@ class DepositAccountController extends Controller
                 return number_format($account->total_cost - $totalDeposits,2);
             })
             ->addColumn('action', function ($account) {
-                return '<a href="'.route('deposits.movements.history', $account->id).'" class="btn btn-success btn-sm">
+                return '<button class="btn btn-success btn-sm register-deposit"
+                            data-id="'.$account->id.'"
+                            data-client="'.$account->client->first_name.' '.$account->client->last_name.'"
+                            data-bs-toggle="modal"
+                            data-bs-target="#registerDepositModal"
+                            <i class="fas fa-dollar-sign"></i> Registrar Deposito
+                        </button>
+                        <a href="'.route('deposits.movements.history', $account->id).'" class="btn btn-secondary btn-sm">
                             <i class="fas fa-list"></i> Historial
                         </a>';
             })

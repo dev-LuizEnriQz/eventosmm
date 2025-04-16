@@ -34,6 +34,14 @@
                         <label class="form-label" for="quote-folio">Nº de Folio / Cotización</label>
                         <input class="form-control" type="text" id="quote-folio" name="quote_folio" readonly>
                         <input type="hidden" id="quote-id" name="quote_id">
+                        @if ($errors->has('quote_folio'))
+                            <div class="text-danger">
+                                {{$errors->first('quote_folio')}}
+                            </div>
+                        @endif
+                        <div class="valid-feedback">
+                            Campo validado!
+                        </div>
                     </div>
                     {{--Ingresar el costo total del evento--}}
                     <div class="col-md-4">
@@ -41,6 +49,14 @@
                         <div class="input-group">
                             <span class="input-group-text">$</span>
                             <input class="form-control" type="number" id="total-cost"  step="0.01" name="total_cost" required>
+                            @if ($errors->has('total_cost'))
+                                <div class="text-danger">
+                                    {{$errors->first('total_cost')}}
+                                </div>
+                            @endif
+                            <div class="valid-feedback">
+                                Campo validado!
+                            </div>
                         </div>
                     </div>
                     {{--Ingresar el deposito Inicial--}}
@@ -49,6 +65,14 @@
                         <div class="input-group">
                             <span class="input-group-text">$</span>
                             <input class="form-control" type="number" id="initial-deposit" step="0.01" name="initial_deposit" required>
+                            @if ($errors->has('initial_deposit'))
+                                <div class="text-danger">
+                                    {{$errors->first('initial_deposit')}}
+                                </div>
+                            @endif
+                            <div class="valid-feedback">
+                                Campo validado!
+                            </div>
                         </div>
                     </div>
                     {{--Ingresar el Metodo de Pago--}}
@@ -60,11 +84,27 @@
                             <option value="transferencia">Transferencia</option>
                             <option value="creditoDebito">Tarjeta de Crédito / Débito</option>
                         </select>
+                        @if ($errors->has('payment_method'))
+                            <div class="text-danger">
+                                {{$errors->first('payment_method')}}
+                            </div>
+                        @endif
+                        <div class="valid-feedback">
+                            Campo validado!
+                        </div>
                     </div>
                     {{--Fecha limite de Pago--}}
                     <div class="col-md-4">
                         <label class="form-label" for="payment-deadline">Ingresar la Fecha Limite de pago</label>
                         <input class="form-control" type="date" id="payment-deadline" name="payment_deadline" required>
+                        @if ($errors->has('payment_deadline'))
+                            <div class="text-danger">
+                                {{$errors->first('payment_deadline')}}
+                            </div>
+                        @endif
+                        <div class="valid-feedback">
+                            Campo validado!
+                        </div>
                     </div>
 
                     <!--Campo de Acepto terminos y condiciones-->

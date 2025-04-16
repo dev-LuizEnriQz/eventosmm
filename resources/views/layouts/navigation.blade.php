@@ -38,11 +38,6 @@
                         </div>
                     </li>
 
-                    <!--CALENDARIO-->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="{{route('calendar.index')}}">Agenda</a>
-                    </li>
-
                     <!--DEPOSITOS-->
                     <li class="nav-item nav-underline">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Depositos</a>
@@ -52,6 +47,12 @@
                             </ul>
                         </div>
                     </li>
+
+                    <!--CALENDARIO-->
+                    <li class="nav-item nav-underline">
+                        <a class="nav-link" href="{{route('calendar.index')}}">Agenda</a>
+                    </li>
+
                 </ul>
 
                 <!--Navbar dropdown Perfíl-->

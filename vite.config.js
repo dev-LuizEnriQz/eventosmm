@@ -14,6 +14,7 @@ export default defineConfig({
                     'resources/js/custom/fullcalendar/calendar_event.js',
                     'resources/js/custom/dataTables/depositsAccountsTable.js',
                     'resources/js/custom/searches/clientQuote_search.js',
+                    'resources/js/custom/modal/registerDeposit.js',
             ],
             refresh: true,
         }),

@@ -18,6 +18,7 @@ $(document).ready(function () {
             {data: 'phone', name: 'phone'},
             {data: 'email', name: 'email'},
             {data: 'company', name: 'company'},
+            {data: 'rfc', name: 'rfc'},
             {data: 'created_by', name: 'created_by'},
             {
                 data: 'actions', name: 'actions',

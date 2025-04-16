@@ -84,7 +84,7 @@ Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(functi
    //Rutas para cuentas de depositos
     Route::prefix('accounts')->name('accounts.')->group(function () {
         Route::get('/', [DepositAccountController::class, 'index'])->name('index');//deposits.accounts.index
-        Route::get('/registrarCuentaDeposito', [DepositAccountController::class, 'create'])->name('registrarCuentaDeposito');//deposits.accounts.create
+        Route::get('/registrarCuentaDeposito', [DepositAccountController::class, 'create'])->name('registrarCuentaDeposito');//deposits.accounts.registrarCuentaDeposito
         Route::post('/', [DepositAccountController::class, 'store'])->name('store');//deposits.accounts.store
         Route::get('/{id}/edit', [DepositAccountController::class, 'edit'])->name('edit');
         Route::patch('{id}', [DepositAccountController::class, 'update'])->name('update');
@@ -96,8 +96,6 @@ Route::middleware(['auth'])->prefix('deposits')->name('deposits.')->group(functi
 
     //Rutas para movimientos de depositos
     Route::prefix('movements')->name('movements.')->group(function () {
-       Route::get('/', [DepositController::class, 'index'])->name('index');//deposits.movements.index
-        Route::get('/create', [DepositController::class, 'create'])->name('create');//deposits.movements.create
         Route::post('/', [DepositController::class, 'store'])->name('store');//deposits.movements.store
         Route::get('/{id}/history', [DepositController::class, 'history'])->name('history');//deposits.movements.history
     });
