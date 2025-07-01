@@ -6,22 +6,22 @@
                 <a href="{{route('quotes.registrarCotizacion')}}" class="btn btn-primary">Crear una Nueva Cotización</a>
             </div>
             <div class="card-body">
-                <table id="quotesTable" class="display table table-striped mt-2">
+                <table id="quotesTable" class="table table-striped table-bordered de-responsive mt-2">
                     <!--Encabezado de la Data Table -->
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Folio</th>
-                        <th>Cliente</th>
-                        <th>Compañia</th>
-                        <th>Dia del evento</th>
-                        <th>Nº Invitados</th>
-                        <th>Tipo de evento</th>
-                        <th>Paquete</th>
-                        <th>Descripción</th>
-                        <th>Estatus</th>
-                        <th>Acciones</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Folio</th>
+                            <th>Cliente</th>
+                            <th>Compañia</th>
+                            <th>Dia del evento</th>
+                            <th>Nº Invitados</th>
+                            <th>Tipo de evento</th>
+                            <th>Paquete</th>
+                            <th>Descripción</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
                     </thead>
                     <!-- Cuerpo del Data Table-->
                     <tbody>

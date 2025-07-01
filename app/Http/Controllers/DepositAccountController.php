@@ -137,16 +137,19 @@ class DepositAccountController extends Controller
                 return number_format($account->total_cost - $totalDeposits,2);
             })
             ->addColumn('action', function ($account) {
-                return '<button class="btn btn-success btn-sm register-deposit"
+                return '<button class="btn btn-secondary btn-sm show-deposit-history"
+                            data-account-id="'.$account->id.'"
+                            data-bs-toggle="modal"
+                            data-bs-target="#depositHistoryModal">
+                            <i class="fas fa-list"></i> Historial
+                        </button>
+                        <button class="btn btn-success btn-sm register-deposit"
                             data-id="'.$account->id.'"
                             data-client="'.$account->client->first_name.' '.$account->client->last_name.'"
                             data-bs-toggle="modal"
-                            data-bs-target="#registerDepositModal"
+                            data-bs-target="#registerDepositModal">
                             <i class="fas fa-dollar-sign"></i> Registrar Deposito
-                        </button>
-                        <a href="'.route('deposits.movements.history', $account->id).'" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-list"></i> Historial
-                        </a>';
+                        </button>';
             })
             ->rawColumns(['action'])
             ->make(true);

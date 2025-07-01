@@ -15,6 +15,7 @@ export default defineConfig({
                     'resources/js/custom/dataTables/depositsAccountsTable.js',
                     'resources/js/custom/searches/clientQuote_search.js',
                     'resources/js/custom/modal/registerDeposit.js',
+                    'resources/js/custom/modal/depositHistory.js',
             ],
             refresh: true,
         }),

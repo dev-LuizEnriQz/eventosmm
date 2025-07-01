@@ -30,6 +30,20 @@ class DepositController extends Controller
            'payment_date' => 'required|date',
         ]);
 
+        $depositAccount = DepositAccount::findOrFail($request->deposit_account_id);
+
+        $totalDeposited = $depositAccount->deposits()->sum('amount');
+        $remaining = $depositAccount->total_cost - $totalDeposited;
+
+        if ($request->amount > $remaining) {
+            return response()->json([
+                'message' => 'El monto del Depósito excede el saldo restante.',
+                'errors' => [
+                    'amount' => ['El monto no puede ser mayor a $'. number_format($remaining, 2)],
+                ]
+            ], 422);
+        }
+
         Deposit::create([
            'deposit_account_id' => $validatedData['deposit_account_id'],
             'amount' => $validatedData['amount'],
@@ -42,5 +56,22 @@ class DepositController extends Controller
         return response()->json([
             'message' => 'Deposito registrado exitosamente'
         ],200);
+    }
+
+    public function History($id)
+    {
+        $account = DepositAccount::with(['deposits.user'])->findOrFail($id);
+
+        return response()->json([
+            'deposits' => $account->deposits->map(function ($deposit) {
+                $paymentDate = \Carbon\Carbon::parse($deposit->payment_date);
+                return [
+                    'id' => $deposit->id,
+                    'date' => $paymentDate->format('d/m/Y'),
+                    'amount' => number_format($deposit->amount,2),
+                    'user' => $deposit->user->name,
+                ];
+            }),
+        ]);
     }
 }

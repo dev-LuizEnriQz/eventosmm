@@ -16,6 +16,7 @@
         "vite": "^6.2.6"
     },
     "dependencies": {
+        "-": "^0.0.1",
         "@fullcalendar/core": "^6.1.15",
         "@fullcalendar/daygrid": "^6.1.15",
         "@fullcalendar/interaction": "^6.1.15",
@@ -29,6 +30,7 @@
         "datatables.net-responsive": "^3.0.3",
         "datatables.net-responsive-bs5": "^3.0.3",
         "flatpickr": "^4.6.13",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "npm": "^11.4.1"
     }
 }

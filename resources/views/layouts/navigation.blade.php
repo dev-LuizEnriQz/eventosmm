@@ -1,4 +1,6 @@
+{{--
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+--}}
     <!-- Primary Navigation Menu -->
     <nav class="navbar navbar-expand-lg" style="background: #babbbc">
         <div class="container-fluid">
@@ -14,53 +16,36 @@
             </button>
             <!-- Navbar Links-->
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="container-fluid navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <!--CLIENTES-->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#clientsMenu" aria-expanded="false">Clientes</a>
-                        <div class="collapse" id="clientsMenu">
-                            <ul class="dropdown-menu" id="clientsMenu">
-                                <li><a class="dropdown-item" href="{{route('clients.index')}}">Consulta Clientes</a></li>
-                                <li><a class="dropdown-item" href="{{ route('clients.registrarCliente') }}">Registrar Cliente</a></li>
-                            </ul>
-                        </div>
+                    <!--NOSOTROS-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#clientsMenu" aria-expanded="false">Nosotros</a>
                     </li>
 
-                    <!-- COTIZACIONES-->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#quoteMenu" aria-expanded="false">Cotizaciones</a>
-                        <div class="collapse" id="quoteMenu">
-                            <ul class="dropdown-menu" id="quoteMenu">
-                                <li><a class="dropdown-item" href="{{route('quotes.index')}}">Consultar Cotización</a></li>
-                                <li><a class="dropdown-item" href="{{route('quotes.registrarCotizacion')}}">Registrar Cotización</a></li>
-                            </ul>
-                        </div>
+                    <!-- SERVICIOS-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#quoteMenu" aria-expanded="false">Servicios</a>
                     </li>
 
-                    <!--DEPOSITOS-->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Depositos</a>
-                        <div class="collapse" id="depositsMenu">
-                            <ul class="dropdown-menu" id="depositsMenu">
-                                <li><a class="dropdown-item" href="{{route('deposits.accounts.index')}}">Consultar Cuenta / Depositos</a></li>
-                            </ul>
-                        </div>
+                    <!--TESTIMONIOS-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Testimonios</a>
                     </li>
 
-                    <!--CALENDARIO-->
-                    <li class="nav-item nav-underline">
-                        <a class="nav-link" href="{{route('calendar.index')}}">Agenda</a>
+                    <!--BLOG-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
                     </li>
 
                 </ul>
 
                 <!--Navbar dropdown Perfíl-->
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     @guest
                     <li class="nav-item dropdown nav-underline">
                         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#authDropdown" aria-expanded="false">
-                            Inicio de Sesión / Registro
+                            <!--Inicio de Sesión / Registro-->
                         </a>
                         <ul class="dropdown-menu" id="authDropdown">
                             <li><a class="dropdown-item" href="{{ route('login') }}">Inicio de Sesión</a></li>
@@ -93,4 +78,6 @@
             <!-- END Navbar LINKS -->
         </div>
     </nav>
+{{--
 </nav>
+--}}

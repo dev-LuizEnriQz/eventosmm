@@ -30,7 +30,9 @@
             </div>
         </div>
     </div>
-    <!-- Modal Registrar Depósito -->
+
+    <!-- Modal: Registrar Depósito -->
+
     <div class="modal fade" id="registerDepositModal" tabindex="-1" aria-labelledby="registerDepositModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form id="registerDepositForm">
@@ -61,7 +63,6 @@
                                 <option value="">Seleccionar...</option>
                                 <option value="efectivo">Efectivo</option>
                                 <option value="transferencia">Transferencia</option>
-                                <option value="tarjeta">Tarjeta</option>
                             </select>
                         </div>
 
@@ -84,7 +85,9 @@
             </form>
         </div>
     </div>
-    <!-- Toast de Notificación -->
+
+    <!-- Notificación (TOAST) confirmación de depósito -->
+
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
         <div id="depositToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -95,10 +98,51 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal: Detalle de Depósitos -->
+
+    <div class="modal fade" id="depositHistoryModal" tabindex="-1" aria-labelledby="depositsHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="depositHistoryModalLabel">Desglose de Depósitos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="deposit-history-body">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha de Depósito</th>
+                            <th>Monto</th>
+                            <th>Usuario</th>
+                        </tr>
+                        </thead>
+                        <tbody id="depositHistoryBody">
+                        <!-- Aquí se cargará dinámicamente el Historial del Deposito -->
+                            <!-- Spinner interacción mientras termina de cargar -->
+                            <tr id="spinnerRow" class="text-center">
+                                <td colspan="4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Script donde va la Ruta para ejecutar depositos-->
     <script>
         const storeDepositUrl = "{{ route('deposits.movements.store') }}";
     </script>
+    <script>
+        const historyDepositUrl = "{{ route('deposits.movements.history', ':id')}}"
+    </script>
     @vite(['resources/js/custom/modal/registerDeposit.js'])
+    @vite(['resources/js/custom/modal/depositHistory.js'])
     @vite(['resources/js/custom/dataTables/depositsAccountsTable.js'])
 </x-app-layout>
