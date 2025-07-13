@@ -15,6 +15,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/custom/hero_section.css', 'resources/css/custom/social_icons.css'])
     </head>
     <body class="d-flex flex-column h-100 font-sans antialiased bg-gray-100 dark:bg-gray-900">
 
@@ -42,7 +43,7 @@
         @endisset
 
         <!-- Page Content -->
-        <main class="flex-grow-1">
+        <main class="flex-grow-1 p-0 m-0 w-100" style="min-height: 100vh">
             {{ $slot }}
         </main>
 

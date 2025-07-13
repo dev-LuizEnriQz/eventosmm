@@ -1,0 +1,69 @@
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Imagen como fondo animado */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('../../images/salon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform-origin: center center;
+    transform: scale(3);
+    animation: zoomIn 3s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+/* Overlay oscuro encima de la imagen */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Asegurar que el contenido esté sobre el overlay */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+/* Zoom Lento */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+
+
+/* Responsive ajuste adicional */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+}
+

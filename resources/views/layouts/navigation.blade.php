@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <div class="flex">
-                <a class="navbar-brand" href="{{ route('dashboard') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{asset('storage/images/logo_mm.svg')}}" alt="Logo" width="100" height="50" class="rounded-circle me-2"/>
                 </a>
             </div>

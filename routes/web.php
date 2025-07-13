@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -9,12 +11,10 @@ use App\Http\Controllers\DepositAccountController;
 use App\Http\Controllers\DepositController;
 use Illuminate\Support\Facades\Route;
 
-//Ruta de Inicio / Bienvenido
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+//Ruta de Inicio / Home
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 
 Route::get('/dashboard', function () {

@@ -16,6 +16,8 @@ export default defineConfig({
                     'resources/js/custom/searches/clientQuote_search.js',
                     'resources/js/custom/modal/registerDeposit.js',
                     'resources/js/custom/modal/depositHistory.js',
+                    'resources/css/custom/social_icons.css',
+                    'resources/css/custom/hero_section.css'
             ],
             refresh: true,
         }),

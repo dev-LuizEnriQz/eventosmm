@@ -3,9 +3,8 @@
 
     </x-slot>
 
-    <div class="py-12">
+    @include('home.hero')
 
-    </div>
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('status') }}

@@ -23,4 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Quote::observe(QuoteObserver::class);
     }
+
+    public const HOME = '/dashboard';
 }
