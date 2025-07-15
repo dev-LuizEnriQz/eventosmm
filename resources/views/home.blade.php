@@ -3,7 +3,10 @@
 
     </x-slot>
 
+
     @include('home.hero')
+
+    @include('home.nosotros')
 
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

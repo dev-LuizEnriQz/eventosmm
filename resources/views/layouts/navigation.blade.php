@@ -30,7 +30,7 @@
 
                     <!--TESTIMONIOS-->
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Testimonios</a>
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#depositsMenu" aria-expanded="false">Galería</a>
                     </li>
 
                     <!--BLOG-->
