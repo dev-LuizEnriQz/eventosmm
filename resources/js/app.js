@@ -11,6 +11,12 @@ import 'datatables.net-bs5'; // Importar DataTables con soporte de Bootstrap 5
 import './custom/flatpickr/event_date_quote';//Importar Flatpickr para calendario de eventos
 import 'datatables.net-responsive-bs5';
 
+//Importar estilos Swiper
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/parallax';
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

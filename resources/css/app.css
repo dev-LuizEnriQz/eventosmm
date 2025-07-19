@@ -4,6 +4,8 @@
 @import "flatpickr/dist/flatpickr.min.css";
 @import 'datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css';
 @import 'custom/social_icons.css';
+@import 'custom/nosotros_section.css';
+@import "custom/hero_section.css";
 
 
 /*@tailwind base;

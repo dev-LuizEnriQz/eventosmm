@@ -5,8 +5,8 @@
 
 
     @include('home.hero')
-
     @include('home.nosotros')
+    @include('home.galeria')
 
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
