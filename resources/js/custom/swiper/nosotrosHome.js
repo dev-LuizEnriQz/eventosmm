@@ -2,10 +2,11 @@ console.log('JS cargado correctamente');
 
 import Swiper from "swiper";
 import {Navigation, Pagination, Parallax} from "swiper/modules";
+import 'swiper/css';
 
 document.addEventListener('DOMContentLoaded',() => {
     console.log('Iniciando Swiper...');
-    const swiper = new Swiper('.mySwiper', {
+    const parallaxSwiper = new Swiper('.swiper-parallax', {
         modules: [Navigation,Pagination,Parallax],
         speed: 600,
         parallax: true,
@@ -14,8 +15,8 @@ document.addEventListener('DOMContentLoaded',() => {
             clickable: true,
         },
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".parallax-next",
+            prevEl: ".parallax-prev",
         },
     });
 })

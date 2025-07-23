@@ -1,23 +1,16 @@
 import Swiper from "swiper";
-import {Navigation, Pagination} from 'swiper/modules';
+import {EffectCards} from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+
 document.addEventListener('DOMContentLoaded', () => {
-    const swiper = new Swiper('.mySwiper', {
-        modules: [Navigation, Pagination],
-        slidesPerView: 3,
-        spaceBetween: 20,
-        loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true
+    const  swiper = new Swiper(".swiper-cards",{
+        modules: [EffectCards],
+        effect: 'cards',
+        grabCursor: true,
+        navigation:{
+            nextEl: '.cards-next',
+            prevEl: '.cards-prev',
         },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        breakpoints: {
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-        }
     });
-});
+})

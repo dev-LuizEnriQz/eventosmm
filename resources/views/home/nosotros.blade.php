@@ -72,7 +72,7 @@
                 <h2 class="titulo-decorado">CREAMOS Y PRESERVAMOS EXPERIENCIAS HEMROSAS Y DURADERAS</h2>
             </div>
         </div>
-        <div class="swiper mySwiper shadow-lg rounded-4 overflow-hidden" style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff">
+        <div class="swiper swiper-parallax shadow-lg rounded-4 overflow-hidden" style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff">
             <div class="parallax-bg" style="background-image: url({{asset('/images/galleryCeremony/crmny7.jpg')}});" data-swiper-parallax="-23%"></div>
             <!-- Parallax -->
             <div class="swiper-wrapper">
@@ -124,8 +124,8 @@
                 </div>
             </div>
             <!-- Botones de Navegacion y Paginación -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next parallax-next"></div>
+            <div class="swiper-button-prev parallax-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
