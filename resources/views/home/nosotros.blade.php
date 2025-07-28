@@ -128,6 +128,77 @@
             <div class="swiper-button-prev parallax-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
+
+        <!-- Prueba de Slider cards -->
+
+        <div class="row py-5">
+            <div class="col-md-6 justify-content-center align-items-center">
+                <h2 class="titulo-decorado">M&M EVENTOS</h2>
+                <br>
+                <p class="lead text-muted" style="text-align: justify">
+                    Planifica tu evento con nosotros y transforma cada momento en algo inolvidable.
+                    Desde el primer detalle hasta el último aplauso, convertimos tus ideas en recuerdos para toda la vida.
+                </p>
+            </div>
+            <!-- Slider Carousel Cards -->
+            <div class="col-md-6 justify-content-center align-items-center">
+                <div class="swiper swiper-galleryCards swiper-cards">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryWeeding/weeding2.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryWeeding/weeding3.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryWeeding/weeding4.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryWeeding/weeding5.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration1.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration2.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration3.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration4.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration6.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                        <div class="swiper-slide swiper-galleryCards-slide">
+                            <div class="parallax-bg"
+                                 style="background-image: url('{{asset('/images/galleryDecorations/decoration7.jpg')}}')"
+                                 data-bs-parallax="-23%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     @vite(['resources/js/app.js','resources/js/custom/swiper/nosotrosHome.js'])
+    @vite(['resources/js/custom/swiper/nosotrosHome_cards.js',])
 </section>

@@ -1,73 +1,42 @@
-<section class="gallery-section container my-5 py-5">
+<section class="gallery-section container py-5">
     <div class="container d-flex flex-column">
-        <div class="row">
-            <div class="col-md-6 justify-content-center align-items-center">
-                <h2 class="titulo-decorado">M&M EVENTOS</h2>
-                <br>
-                <p class="lead text-muted" style="text-align: justify">
-                    Planifica tu evento con nosotros y transforma cada momento en algo inolvidable.
-                    Desde el primer detalle hasta el último aplauso, convertimos tus ideas en recuerdos para toda la vida.
-                </p>
+        <h2 class="titulo-decorado">GALERIA</h2>
+        <div class="swiper swiperGallery gridSwiper my-4">
+            <div class="swiper-wrapper swiper-grid">
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/carousel1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/v_carousel_1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/v_carousel_2.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/v_carousel_3.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/v_carousel_4.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv2.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv3.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv4.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv5.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv6.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryXV/xv7.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryBanquets/banquetes1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryBanquets/banquetes2.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryBanquets/banquetes3.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration2.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration3.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration4.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration5.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration6.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration7.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration8.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryDecorations/decoration9.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny1.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny2.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny3.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny4.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny5.jpg')}}')"></div>
+                <div class="swiper-slide swiper-gridGallery-slide" style="background-image: url('{{ asset('/images/galleryCeremony/crmny6.jpg')}}')"></div>
             </div>
-            <!-- Slider Carousel Cards -->
-            <div class="col-md-6 justify-content-center align-items-center">
-                <div class="swiper swiper-gallery swiper-cards">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryWeeding/weeding2.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryWeeding/weeding3.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryWeeding/weeding4.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryWeeding/weeding5.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration1.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration2.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration3.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration4.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration6.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                        <div class="swiper-slide swiper-gallery-slide">
-                            <div class="parallax-bg"
-                                 style="background-image: url('/images/galleryDecorations/decoration7.jpg')"
-                                 data-bs-parallax="-23%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
-    @vite(['resources/js/custom/swiper/galleryHome.js',])
+    @vite(['resources/js/custom/swiper/galleryHome.js'])
 </section>
 
