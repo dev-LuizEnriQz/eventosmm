@@ -16,7 +16,7 @@
             </button>
             <!-- Navbar Links-->
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="container-fluid navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <!--NOSOTROS-->
                     <li class="nav-item">
@@ -39,6 +39,8 @@
                     </li>
 
                 </ul>
+            </div>
+            <!-- END Navbar LINKS -->
 
                 <!--Navbar dropdown Perfíl-->
                 <ul class="navbar-nav ms-auto">
@@ -74,8 +76,6 @@
                     @endguest
                 </ul>
                 <!-- End Navbar Dropdown Perfil-->
-            </div>
-            <!-- END Navbar LINKS -->
         </div>
     </nav>
 {{--
