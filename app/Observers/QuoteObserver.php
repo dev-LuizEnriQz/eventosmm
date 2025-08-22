@@ -20,7 +20,7 @@ class QuoteObserver
                     'guests' => $quote->guests,
                     'event_type' => $quote->event_type,
                     'event_date' => $quote->event_date,
-                    'package_type' => $quote->package_type,
+                    'package_id' => $quote->package_id,
                     'description' => $quote->description,
                     'status' => $quote->status,
                     'folio' => $quote->folio,

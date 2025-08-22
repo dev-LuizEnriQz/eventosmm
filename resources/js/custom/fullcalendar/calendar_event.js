@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('modalClientName').innerText = event.client_name || 'No Disponible';
             document.getElementById('modalEventType').innerText = event.event_type || 'No Disponible';
             document.getElementById('modalGuests').innerText = event.guests || 'No Disponible';
-            document.getElementById('modalPackage').innerText = event.package_type || 'No Disponible';
+            document.getElementById('modalPackage').innerText = event.package_name || 'No Disponible';
             document.getElementById('modalDescription').innerText = event.description || 'No Disponible';
             document.getElementById('modalStatus').innerText = event.status || 'No Disponible';
 

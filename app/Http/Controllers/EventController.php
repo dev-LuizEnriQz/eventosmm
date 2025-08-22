@@ -39,7 +39,7 @@ class EventController extends Controller
         $event->event_date = $quote->event_date; // Fecha del evento
         $event->status = $quote->status; //Status del Evento
         $event->guests = $quote->guests; // Numero de invitados
-        $event->package_type = $quote->package_type; // Tipo de Paquete
+        $event->package_id = $quote->package_id; // Tipo de Paquete
         $event->description = $quote->description; //Descripción del evento
         $event->save();
 
@@ -51,7 +51,31 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'quote_id' => 'required|exists:quotes,id',
+            'client_id' => 'required|exists:clients,id',
+            'guests' => 'required|integer|min:1',
+            'event_type' => 'required|string',
+            'event_date' => 'required|date',
+            'package_id' => 'required|exists:packages,id',
+            'description' => 'nullable|string',
+            'status' => 'required|string',
+            'folio' => 'required|string'
+        ]);
+
+        Event::create([
+           'quote_id' => $request->quote_id,
+            'client_id' => $request->client_id,
+            'guests' => $request->guests,
+            'event_type' => $request->event_type,
+            'event_date' => $request->event_date,
+            'package_id' => $request->package_id,
+            'description' => $request->description,
+            'status' => $request->status,
+            'folio' => $request->folio,
+        ]);
+
+        return response()->json(['event' => 'Evento creado con exito.'], 200);
     }
 
     /**

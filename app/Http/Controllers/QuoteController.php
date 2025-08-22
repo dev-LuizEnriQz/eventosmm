@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Quote;
 use App\Models\Client;
+use App\Models\Package;
 use Carbon\Carbon;
 use http\Env\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,28 +24,19 @@ class QuoteController extends Controller
 
     public function getQuotesData()
     {
-        $quotes = Quote::select([
-            'id',
-            'client_id',
-            'client_name',
-            'client_company',
-            'guests',
-            'event_date',
-            'event_type',
-            'package_type',
-            'description',
-            'status',
-            'folio'
-        ]);
+        $quotes = Quote::with('package');
 
         return DataTables::of($quotes)
+            ->addColumn('package_name', function ($quote) {
+                return $quote->package ? $quote->package->name : 'Sin paquete';
+            })
             ->addColumn('actions', function ($quote) {
                 return'
                 <a href="'. route('quotes.edit', $quote->id) .'" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>';
             })
             ->editColumn('event_date', function ($quote) {
                 return $quote->event_date
-                    ? Carbon::parse($quote->event_date)->format('Y-m-d H:i')
+                    ? Carbon::parse($quote->event_date)->format('D, d M Y H:i')
                     : 'Sin fecha';
             })
             ->rawColumns(['actions'])
@@ -64,27 +56,24 @@ class QuoteController extends Controller
 
         //Fecha fijas deshabilitadas
         $dates_off = [
-            "2025-12-25",
-            "2025-12-31",
-            "2026-12-25",
-            "2026-12-31",
-            "2027-12-25",
-            "2027-12-31",
-            "2028-12-25",
-            "2028-12-31",
-            "2029-12-25",
-            "2029-12-31",
-            "2030-12-25",
-            "2030-12-31",
+            "2025-12-25", "2025-12-31",
+            "2026-12-25", "2026-12-31",
+            "2027-12-25", "2027-12-31",
+            "2028-12-25", "2028-12-31",
+            "2029-12-25", "2029-12-31",
+            "2030-12-25", "2030-12-31",
         ];
 
         //Unir ambas listas
         $occupied = array_merge($dates_off, $date_occupied);
 
+        //obtener la lista de Paquetes
+        $packages = Package::all();
+
         //Obtener lista de clientes
         $clients = Client::all();
 
-        return view('quotes.registrarCotizacion' , compact('occupied', 'clients'));
+        return view('quotes.registrarCotizacion' , compact('occupied', 'clients', 'packages'));
     }
 
     /**
@@ -97,7 +86,7 @@ class QuoteController extends Controller
            'guests' => 'required|integer|min:1',
            'event_date' => 'required|date_format:Y-m-d H:i',
            'event_type' => 'required|string',
-           'package_type' => 'required|string',
+           'package_id' => 'required|string',
            'description' => 'nullable|string',
         ]);
 
@@ -111,14 +100,14 @@ class QuoteController extends Controller
         //Obtener el cliente
         $client = Client::findOrFail($validated['client_id']);
 
-        Quote::create([
+        $quote = Quote::create([
             'client_id' => $client->id,
             'client_name' => "{$client->first_name} {$client->last_name}{$client->second_surname}",
             'client_company' => $client->company,
             'guests' => $validated['guests'],
             'event_date' => $validated['event_date'],
             'event_type' => $validated['event_type'],
-            'package_type' => $validated['package_type'],
+            'package_id' => $validated['package_id'],
             'description' => $validated['description'],
             'status'=>'pending',//Estados por defecto
             'folio' => $newFolio, //Asignar el nuevo Folio
@@ -144,7 +133,7 @@ class QuoteController extends Controller
                     'event_date' => $quote->event_date,
                     'event_type' => $quote->event_type,
                     'guests' => $quote->guests,
-                    'package_type' => $quote->package_type,
+                    'package_id' => $quote->package_id,
                     'description' => $quote->description,
                     'status' => $quote->status ?? 'pending',
                 ]
@@ -179,7 +168,7 @@ class QuoteController extends Controller
                 'guests' => 'required|integer|min:1',
                 'event_date' => 'required|date_format:Y-m-d H:i',
                 'event_type' => 'required|string',
-                'package_type' => 'required|string',
+                'package_id' => 'required|string',
                 'description' => 'nullable|string',
                 'status' => 'required|string|in:pending,approved,rejected',
             ]);
@@ -190,7 +179,7 @@ class QuoteController extends Controller
            'guests' => $validated['guests'],
            'event_date' => $validated['event_date'],
            'event_type' => $validated['event_type'],
-           'package_type' => $validated['package_type'],
+           'package_id' => $validated['package_id'],
            'description' => $validated['description'],
            'status' => $validated['status'],
         ]);
@@ -224,7 +213,19 @@ class QuoteController extends Controller
             $quotes->where('folio', 'LIKE', "%{$query}%");
         }
 
-        $results = $quotes->get(['id', 'folio', 'client_id','client_name']);
+        $rawResults = $quotes->get(['id', 'folio', 'client_id','client_name','event_date','event_type']);
+
+        //Le damos formato a los resultados de la busqueda
+        $results = $rawResults->map(function($quote) {
+            return [
+                'id' => $quote->id,
+                'folio' => $quote->folio,
+                'client_id' => $quote->client_id,
+                'client_name' => $quote->client_name,
+                'event_type' => $quote->event_type,
+                'event_date' => Carbon::parse($quote->event_date)->format('d,M,Y'),
+            ];
+        });
 
         return response()->json($results);
     }

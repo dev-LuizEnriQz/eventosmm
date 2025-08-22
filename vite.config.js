@@ -22,6 +22,7 @@ export default defineConfig({
                     'resources/js/custom/swiper/nosotrosHome_cards.js',
                     'resources/js/custom/swiper/nosotrosHome.js',
                     'resources/js/custom/swiper/galleryHome.js',
+                    'resources/js/custom/quotes/package_select.js',
             ],
             refresh: true,
         }),

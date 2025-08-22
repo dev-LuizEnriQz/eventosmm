@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('event_type');
             $table->dateTime('event_date');
             $table->integer('guests');
-            $table->string('package_type');
+            $table->string('package_id');
             $table->text('description')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();

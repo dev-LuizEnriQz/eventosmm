@@ -19,13 +19,13 @@ return new class extends Migration
             $table->dateTime('event_date')->nullable();//Día del evento y Hora
             $table->integer('guests');//Numero de invitados
             $table->string('event_type');//Tipo de evento
-            $table->string('package_type');//TIpo de paquete a eleccion del cliente
             $table->text('description')->nullable();//Descripción
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); //Estatus de la cotización
             $table->string('folio')->unique();//Folio único
-            $table->timestamps();
-
+            $table->foreignId('package_id')->nullable()->constrained('packages')->onDelete('set null');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

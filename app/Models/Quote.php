@@ -20,10 +20,10 @@ class Quote extends Model
         'event_date',
         'guests',
         'event_type',
-        'package_type',
         'description',
         'status',
         'folio',
+        'package_id',
     ];
 
     protected static function booted()
@@ -44,10 +44,16 @@ class Quote extends Model
     //Relacion con la Tabla Evento
     public function event()
     {
-        return $this->hasOne(Event::class);
+        return $this->hasMany(Event::class);
     }
 
     protected $casts = [
       'event_date' => 'datetime',
     ];
+
+    //Relacion con la Tabla Tipo de Paquete
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
 }

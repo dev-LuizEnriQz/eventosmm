@@ -86,16 +86,24 @@
                     </div>
                     {{--Paquete a eleccion del cliente para el evento--}}
                     <div class="col-md-3">
-                        <label class="form-label" for="package_type">Paquete del evento:</label>
-                        <select class="form-select" id="package_type" name="package_type" required>
-                            <option value="básico">Básico</option>
-                            <option value="intermedio">Intermedio</option>
-                            <option value="premium">Premium</option>
+                        <label class="form-label" for="package_id">Paquete del evento:</label>
+                        <select class="form-select" id="package_id" name="package_id" required>
+                            <option value="" selected disabled>Seleccione un Paquete</option>
+                            @foreach($packages as $package)
+                                <option value="{{$package->id}}"
+                                        data-name="{{$package->name}}"
+                                        data-price="{{$package->price}}">
+                                    {{ $package->name }}
+                                </option>
+                            @endforeach
                         </select>
+                        <small id="package-description" class="text-muted mt-1 d-block">
+                            Seleccione un paquete para ver su precio
+                        </small>
                     </div>
-                    @if ($errors->has('package_type'))
+                    @if ($errors->has('package_id'))
                         <div class="text-danger">
-                            {{$errors->first('package_type')}}
+                            {{$errors->first('package_id')}}
                         </div>
                     @endif
                     <div class="valid-feedback">
@@ -119,4 +127,5 @@
     </div>
     @vite(['resources/js/custom/searches/client_search.js'])
     @vite(['resources/js/custom/flatpickr/event_date_quote.js'])
+    @vite(['resources/js/custom/quotes/package_select.js'])
 </x-app-layout>

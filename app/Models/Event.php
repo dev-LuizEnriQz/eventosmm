@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Prompts\Table;
 
@@ -11,15 +12,15 @@ class Event extends Model
     protected $table = 'events';
 
     protected $fillable = [
-        'folio',
-        'client_id',
         'quote_id',
+        'client_id',
+        'guests',
         'event_type',
         'event_date',
-        'status',
-        'guests',
-        'package_type',
+        'package_id',
         'description',
+        'status',
+        'folio',
     ];
 
     //Relación con la Table de Clientes
@@ -34,4 +35,9 @@ class Event extends Model
         return $this->belongsTo(Quote::class, 'quote_id');
     }
 
+    //Relación con la Tabla de Paquetes
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id');
+    }
 }

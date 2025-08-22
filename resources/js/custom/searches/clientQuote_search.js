@@ -25,7 +25,9 @@ $(document).ready(function (){
                         data-clientid="${quote.client_id}"
                         data-name="${quote.client_name}"
                         data-folio="${quote.folio}">
-                        ${quote.client_name} - ${quote.folio}
+
+                        <div><strong>${quote.client_name}</strong> - <span>${quote.folio}</span></div>
+                        <small class="text-muted">${quote.event_type} • ${quote.event_date}</small>
                     </li>
                         `);
                     });
@@ -56,7 +58,7 @@ $(document).ready(function (){
     });
 
 
-    //BUSQUEDA POR FOLIO//
+    //======BUSQUEDA POR FOLIO========//
     $('#folio_search').on('input',function (){
         const query = $(this).val();
         console.log('busqueda por folio:', query); //Log para verificar la consulta
@@ -80,7 +82,9 @@ $(document).ready(function (){
                                     data-clientid="${quote.client_id}"
                                     data-name="${quote.client_name}"
                                     data-folio="${quote.folio}">
-                                    ${quote.client_name} - ${quote.folio}
+
+                                    <div><strong>${quote.client_name}</strong> - <span>${quote.folio}</span></div>
+                                    <small class="text-muted">${quote.event_type} • ${quote.event_date}</small>
                                 </li>
                             `);
                         });

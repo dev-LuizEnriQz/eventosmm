@@ -33,7 +33,7 @@ class CalendarController extends Controller
                         'client_name' => $event->quote->client_name ?? 'Sin Cliente', //Nombre completo desde la cotizacion
                         'event_type' => $event->event_type,
                         'guests' => $event->guests,
-                        'package_type' => $event->package_type,
+                        'package_name' => $event->package ? $event->package->name : 'Sin Paquete', //Nombre del Paquete
                         'description' => $event->description,
                         'status' => $event->status,
                     ],

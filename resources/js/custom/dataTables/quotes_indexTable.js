@@ -19,7 +19,7 @@ $(document).ready(function (){
             {data: 'event_date', name: 'event_date'},
             {data: 'guests', name: 'guests'},
             {data: 'event_type', name: 'event_type'},
-            {data: 'package_type', name: 'package_type'},
+            {data: 'package_name', name: 'package_name'},
             {data: 'description', name:'description'},
             {data: 'status', name: 'status'},
             {
